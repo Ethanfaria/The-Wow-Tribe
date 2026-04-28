@@ -8,420 +8,411 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     />
+    <style>
+      * { box-sizing: border-box; }
+      body { font-family: "Libre Baskerville", serif; margin: 0; }
+
+      /* ── NAV ── */
+      #navbar {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+        transition: background 0.3s, box-shadow 0.3s;
+      }
+      #navbar.scrolled {
+        background: rgba(255,247,237,0.96);
+        box-shadow: 0 2px 16px rgba(80,0,120,0.08);
+        backdrop-filter: blur(8px);
+      }
+
+      /* hamburger */
+      #menu-toggle { display: none; }
+      #hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+      #hamburger span { display: block; width: 24px; height: 2px; background: #581c87; border-radius: 2px; transition: all 0.3s; }
+      #menu-toggle:checked ~ #nav-links { display: flex; }
+      #menu-toggle:checked ~ #hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      #menu-toggle:checked ~ #hamburger span:nth-child(2) { opacity: 0; }
+      #menu-toggle:checked ~ #hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      @media (max-width: 767px) {
+        #hamburger { display: flex; }
+        #nav-links {
+          display: none;
+          position: absolute; top: 100%; left: 0; right: 0;
+          flex-direction: column; align-items: center; gap: 0;
+          background: rgba(255,247,237,0.98);
+          box-shadow: 0 8px 24px rgba(80,0,120,0.12);
+          padding: 1rem 0 1.5rem;
+        }
+        #nav-links a { padding: 0.75rem 2rem; width: 100%; text-align: center; }
+        #nav-links .cta-btn { margin: 0.5rem auto 0; }
+      }
+
+      /* ── CAROUSEL ── */
+      .carousel-wrapper { overflow: hidden; }
+      .carousel-track { display: flex; will-change: transform; }
+      .carousel-slide { min-width: 100%; flex-shrink: 0; padding: 0 1rem; }
+
+      /* dots */
+      .dot { width: 10px; height: 10px; border-radius: 50%; background: #c4b5fd; border: none; cursor: pointer; transition: background 0.2s, transform 0.2s; }
+      .dot.active { background: #6d28d9; transform: scale(1.3); }
+
+      /* line clamp */
+      .line-clamp-5 {
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
   </head>
-  <body style="font-family: &quot;Libre Baskerville&quot;, serif">
-    <nav></nav>
-    <div class="min-h-screen bg-orange-50 flex flex-col">
-      <section
-        class="min-h-screen flex items-center md:pt-24 md:pb-16 px-2 md:px-6"
-      >
-        <div class="max-w-3xl mx-auto text-center space-y-6">
-          <h1
-            class="uppercase tracking-widest text-lg mb-2 bg-purple-200 rounded-full max-w-max mx-auto px-4 py-1"
-          >
-            India's Community for Women Entrepreneurs
-          </h1>
-          <h1 class="text-3xl md:text-6xl leading-tight font-bold">
-            You Were Built to
-            <span class="text-purple-800 italic">Lead.</span><br />
-            Your <span class="text-purple-800 italic">Tribe</span> is Waiting.
-          </h1>
-          <p class="text-xs md:text-lg">
-            Join India’s most energising community for women entrepreneurs -
-            where business coaching, sisterhood, and unstoppable ambition come
-            together.
-          </p>
-          <button
-            class="px-6 py-3 bg-purple-800 text-white rounded-full hover:bg-purple-700 transition"
-          >
+
+  <body class="bg-orange-50">
+
+    <!-- ══════════════ NAVBAR ══════════════ -->
+    <nav id="navbar" class="w-full">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
+
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 shrink-0">
+          <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-purple-800 flex items-center justify-center text-orange-200 font-bold text-sm md:text-base border-2 border-orange-300 shadow-md overflow-hidden">
+            <!-- swap for <img src="logo.png" class="w-full h-full object-cover"> -->
+            WT
+          </div>
+          <span class="font-bold text-purple-900 text-base md:text-lg hidden sm:block tracking-tight">The Wow Tribe</span>
+        </a>
+
+        <!-- Hamburger (mobile) -->
+        <label id="hamburger" for="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </label>
+        <input type="checkbox" id="menu-toggle" class="sr-only" />
+
+        <!-- Nav Links -->
+        <div id="nav-links" class="hidden md:flex items-center gap-1 lg:gap-2">
+          <a href="#hero"         class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium">Home</a>
+          <a href="#about"        class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium">About</a>
+          <a href="#services"     class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium">Services</a>
+          <a href="#testimonials" class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium">Testimonials</a>
+          <a href="#contact"      class="cta-btn ml-3 px-5 py-2 bg-purple-800 text-white text-sm rounded-full hover:bg-purple-700 transition font-medium shadow-sm">Contact</a>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ══════════════ HERO ══════════════ -->
+    <section id="hero" class="min-h-screen flex items-center pt-24 pb-16 px-4 sm:px-6">
+      <div class="max-w-3xl mx-auto text-center space-y-5 sm:space-y-6">
+        <span class="inline-block uppercase tracking-widest text-xs sm:text-sm bg-purple-200 rounded-full px-4 py-1.5 text-purple-900">
+          India's Community for Women Entrepreneurs
+        </span>
+        <h1 class="text-3xl sm:text-5xl md:text-6xl leading-tight font-bold text-gray-900">
+          You Were Built to
+          <span class="text-purple-800 italic">Lead.</span><br class="hidden sm:block" />
+          Your <span class="text-purple-800 italic">Tribe</span> is Waiting.
+        </h1>
+        <p class="text-sm sm:text-base md:text-lg text-gray-600 max-w-xl mx-auto leading-relaxed">
+          Join India's most energising community for women entrepreneurs — where business coaching, sisterhood, and unstoppable ambition come together.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3 pt-2">
+          <button class="px-6 py-3 bg-purple-800 text-white rounded-full hover:bg-purple-700 transition text-sm sm:text-base font-medium shadow-md">
             Find Your Tribe
           </button>
-          <button
-            class="px-6 py-3 bg-transparent border-2 border-purple-800 text-purple-800 rounded-full hover:bg-purple-800 hover:text-white transition"
-          >
+          <button class="px-6 py-3 bg-transparent border-2 border-purple-800 text-purple-800 rounded-full hover:bg-purple-800 hover:text-white transition text-sm sm:text-base font-medium">
             Learn More
           </button>
-          <div class="flex justify-center items-center gap-12 mt-10">
-            <div>
-              <p class="text-2xl font-bold text-purple-800">30+</p>
-              <p class="text-xs text-gray-600 uppercase">Years Experience</p>
-            </div>
-            <div class="w-px h-10 bg-gray-300"></div>
-            <div>
-              <p class="text-2xl font-bold text-purple-800">40+</p>
-              <p class="text-xs text-gray-600 uppercase">Locations Scaled</p>
-            </div>
-            <div class="w-px h-10 bg-gray-300"></div>
-            <div>
-              <p class="text-2xl font-bold text-purple-800">100%</p>
-              <p class="text-xs text-gray-600 uppercase">Women-led</p>
-            </div>
+        </div>
+        <div class="flex justify-center items-center gap-8 sm:gap-12 pt-6 flex-wrap">
+          <div class="text-center">
+            <p class="text-2xl sm:text-3xl font-bold text-purple-800">30+</p>
+            <p class="text-xs text-gray-500 uppercase tracking-wide mt-1">Years Experience</p>
+          </div>
+          <div class="w-px h-10 bg-gray-300 hidden sm:block"></div>
+          <div class="text-center">
+            <p class="text-2xl sm:text-3xl font-bold text-purple-800">40+</p>
+            <p class="text-xs text-gray-500 uppercase tracking-wide mt-1">Locations Scaled</p>
+          </div>
+          <div class="w-px h-10 bg-gray-300 hidden sm:block"></div>
+          <div class="text-center">
+            <p class="text-2xl sm:text-3xl font-bold text-purple-800">100%</p>
+            <p class="text-xs text-gray-500 uppercase tracking-wide mt-1">Women-led</p>
           </div>
         </div>
-      </section>
-      <section class="py-20 px-6 bg-violet-950 text-white">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center mb-14">
-            <p class="text-purple-300 uppercase tracking-widest text-sm mb-2">
-              What We Offer
-            </p>
-            <h2 class="text-4xl font-bold">
-              Your <span class="italic text-orange-300">Journey</span> Starts
-              Here
-            </h2>
-            <p
-              class="mt-4 text-purple-200 max-w-xl mx-auto text-sm md:text-base"
-            >
-              Whether you're just starting out or scaling to new heights, The
-              Wow Tribe meets you where you are.
-            </p>
+      </div>
+    </section>
+
+    <!-- ══════════════ SERVICES ══════════════ -->
+    <section id="services" class="py-16 sm:py-20 px-4 sm:px-6 bg-violet-950 text-white">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-10 sm:mb-14">
+          <p class="text-purple-300 uppercase tracking-widest text-xs sm:text-sm mb-2">What We Offer</p>
+          <h2 class="text-3xl sm:text-4xl font-bold">
+            Your <span class="italic text-orange-300">Journey</span> Starts Here
+          </h2>
+          <p class="mt-4 text-purple-200 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+            Whether you're just starting out or scaling to new heights, The Wow Tribe meets you where you are.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
+          <!-- Card 1 -->
+          <div class="bg-purple-800/50 rounded-3xl p-6 sm:p-8 border border-purple-700 hover:bg-purple-800 transition">
+            <div class="w-12 h-12 bg-orange-300 rounded-2xl flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-purple-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold mb-2">Sisterhood Community</h3>
+            <p class="text-purple-200 text-sm leading-relaxed">A powerful network of women who lift each other up. Get access to peer circles, accountability partners, and a tribe that genuinely wants you to win.</p>
           </div>
-          <div class="grid md:grid-cols-3 gap-6">
-            <div
-              class="bg-purple-800/50 rounded-3xl p-8 border border-purple-700 hover:bg-purple-800 transition"
-            >
-              <div
-                class="w-12 h-12 bg-orange-300 rounded-2xl flex items-center justify-center mb-5"
-              >
-                <svg
-                  class="w-6 h-6 text-purple-900"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold mb-2">Sisterhood Community</h3>
-              <p class="text-purple-200 text-sm leading-relaxed">
-                A powerful network of women who lift each other up. Get access
-                to peer circles, accountability partners, and a tribe that
-                genuinely wants you to win.
-              </p>
+          <!-- Card 2 -->
+          <div class="bg-purple-800/50 rounded-3xl p-6 sm:p-8 border border-purple-700 hover:bg-purple-800 transition">
+            <div class="w-12 h-12 bg-orange-300 rounded-2xl flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-purple-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
             </div>
-            <div
-              class="bg-purple-800/50 rounded-3xl p-8 border border-purple-700 hover:bg-purple-800 transition"
-            >
-              <div
-                class="w-12 h-12 bg-orange-300 rounded-2xl flex items-center justify-center mb-5"
-              >
-                <svg
-                  class="w-6 h-6 text-purple-900"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                  />
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold mb-2">Business Workshops</h3>
-              <p class="text-purple-200 text-sm leading-relaxed">
-                Hands-on sessions covering strategy, branding, sales, and
-                leadership — designed specifically for women-led businesses in
-                the Indian market.
-              </p>
-            </div>
-            <div
-              class="bg-purple-800/50 rounded-3xl p-8 border border-purple-700 hover:bg-purple-800 transition"
-            >
-              <div
-                class="w-12 h-12 bg-orange-300 rounded-2xl flex items-center justify-center mb-5"
-              >
-                <svg
-                  class="w-6 h-6 text-purple-900"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold mb-2">1-on-1 Coaching</h3>
-              <p class="text-purple-200 text-sm leading-relaxed">
-                Personalised coaching with Massarat Kang — deep-dive into your
-                unique challenges, unlock clarity, and build a roadmap that
-                actually works for your life.
-              </p>
-            </div>
+            <h3 class="text-lg sm:text-xl font-bold mb-2">Business Workshops</h3>
+            <p class="text-purple-200 text-sm leading-relaxed">Hands-on sessions covering strategy, branding, sales, and leadership — designed specifically for women-led businesses in the Indian market.</p>
           </div>
-          <div class="text-center mt-10">
-            <a
-              href="services.html"
-              class="inline-block px-8 py-3 bg-orange-300 text-purple-900 font-bold rounded-full hover:bg-orange-200 transition"
-              >Explore All Services</a
-            >
+          <!-- Card 3 -->
+          <div class="bg-purple-800/50 rounded-3xl p-6 sm:p-8 border border-purple-700 hover:bg-purple-800 transition sm:col-span-2 md:col-span-1">
+            <div class="w-12 h-12 bg-orange-300 rounded-2xl flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-purple-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold mb-2">1-on-1 Coaching</h3>
+            <p class="text-purple-200 text-sm leading-relaxed">Personalised coaching with Massarat Kang — deep-dive into your unique challenges, unlock clarity, and build a roadmap that actually works for your life.</p>
           </div>
         </div>
-      </section>
-      <section class="flex flex-col justify-center py-20 px-6">
-        <div class="max-w-6xl mx-auto w-full">
-          <div class="text-center mb-14">
-            <p class="text-purple-500 uppercase tracking-widest text-sm mb-2">
-              Our Courses
-            </p>
-            <h2 class="text-4xl font-bold">
-              Learn & <span class="text-purple-800 italic">Grow</span>
-            </h2>
-          </div>
-          <div
-            class="grid grid-cols-2 md:grid-cols-4 gap-4"
-            id="courses-grid"
-          ></div>
+
+        <div class="text-center mt-8 sm:mt-10">
+          <a href="services.html" class="inline-block px-7 sm:px-8 py-3 bg-orange-300 text-purple-900 font-bold rounded-full hover:bg-orange-200 transition text-sm sm:text-base">
+            Explore All Services
+          </a>
         </div>
-      </section>
-      
-      <section class="min-h-screen py-20 px-6 bg-white">
-        <div class="max-w-3xl mx-auto">
-          <div class="text-center mb-14">
-            <p class="text-purple-500 uppercase tracking-widest text-sm mb-2">
-              Real Stories
-            </p>
-            <h2 class="text-4xl font-bold">
-              What Our <span class="text-purple-800 italic">Tribe</span> Says
-            </h2>
-          </div>
-          <div class="overflow-hidden" id="carousel">
-            <div
-              class="flex transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
-              id="track"
-            ></div>
-          </div>
-          <div class="flex items-center justify-center gap-6 mt-10">
-            <button
-              class="bg-purple-800 w-5 h-5 flex items-center justify-center p-6 rounded-full text-orange-50 hover:bg-purple-700 transition"
-              id="prev-btn"
-            >
-              &#8592;
-            </button>
-            <div class="flex gap-2" id="dots"></div>
-            <button
-              class="bg-purple-800 w-5 h-5 flex items-center justify-center p-6 rounded-full text-orange-50 hover:bg-purple-700 transition"
-              id="next-btn"
-            >
-              &#8594;
-            </button>
-          </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ COURSES ══════════════ -->
+    <section id="courses" class="py-16 sm:py-20 px-4 sm:px-6 bg-orange-50">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-10 sm:mb-14">
+          <p class="text-purple-500 uppercase tracking-widest text-xs sm:text-sm mb-2">Our Courses</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">
+            Learn & <span class="text-purple-800 italic">Grow</span>
+          </h2>
         </div>
-      </section>
-    </div>
+        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4" id="courses-grid"></div>
+      </div>
+    </section>
+
+    <!-- ══════════════ TESTIMONIALS ══════════════ -->
+    <section id="testimonials" class="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-10 sm:mb-14">
+          <p class="text-purple-500 uppercase tracking-widest text-xs sm:text-sm mb-2">Real Stories</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">
+            What Our <span class="text-purple-800 italic">Tribe</span> Says
+          </h2>
+        </div>
+
+        <!-- Carousel -->
+        <div class="carousel-wrapper" id="carousel">
+          <div class="carousel-track" id="track" style="transform: translateX(0)"></div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex items-center justify-center gap-5 sm:gap-6 mt-8 sm:mt-10">
+          <button id="prev-btn" aria-label="Previous"
+            class="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-purple-800 text-orange-50 hover:bg-purple-700 transition text-lg font-bold shadow-md">
+            &#8592;
+          </button>
+          <div class="flex gap-2" id="dots"></div>
+          <button id="next-btn" aria-label="Next"
+            class="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-purple-800 text-orange-50 hover:bg-purple-700 transition text-lg font-bold shadow-md">
+            &#8594;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ CONTACT (stub) ══════════════ -->
+    <section id="contact" class="py-16 sm:py-20 px-4 sm:px-6 bg-violet-950 text-white">
+      <div class="max-w-xl mx-auto text-center space-y-5">
+        <p class="text-purple-300 uppercase tracking-widest text-xs sm:text-sm">Get In Touch</p>
+        <h2 class="text-3xl sm:text-4xl font-bold">
+          Ready to Join Your <span class="italic text-orange-300">Tribe?</span>
+        </h2>
+        <p class="text-purple-200 text-sm sm:text-base leading-relaxed">
+          Reach out to us and take the first step towards building the business — and life — you deserve.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+          <input type="email" placeholder="Your email address"
+            class="px-5 py-3 rounded-full bg-purple-800/60 border border-purple-600 text-white placeholder-purple-300 text-sm focus:outline-none focus:border-orange-300 w-full sm:w-auto sm:flex-1" />
+          <button class="px-7 py-3 bg-orange-300 text-purple-900 font-bold rounded-full hover:bg-orange-200 transition text-sm shrink-0">
+            Join Now
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ FOOTER ══════════════ -->
+    <footer class="bg-violet-950 border-t border-purple-800 py-6 px-4 text-center">
+      <p class="text-purple-400 text-xs sm:text-sm">© 2025 The Wow Tribe. All rights reserved.</p>
+    </footer>
+
+    <!-- ══════════════ SCRIPTS ══════════════ -->
     <script>
+      // ── Navbar scroll effect ──
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        navbar.classList.toggle("scrolled", window.scrollY > 30);
+      });
+
+      // ── Courses ──
       const courses = [
-        {
-          title: "Clarity Circle",
-          price: "₹2,999",
-          tag: "Starter",
-          image: "https://placehold.co/400x400",
-          link: "https://your-link.com",
-        },
-        {
-          title: "Strategy Squad",
-          price: "₹5,999",
-          tag: "Growth",
-          image: "https://placehold.co/400x400",
-          link: "https://your-link.com",
-        },
-        {
-          title: "Legacy Leaders",
-          price: "₹9,999",
-          tag: "Advanced",
-          image: "https://placehold.co/400x400",
-          link: "https://your-link.com",
-        },
-        {
-          title: "The Inner Circle",
-          price: "₹19,999",
-          tag: "Premium",
-          image: "https://placehold.co/400x400",
-          link: "https://your-link.com",
-        },
+        { title: "Clarity Circle",  price: "₹2,999",  tag: "Starter",  image: "https://placehold.co/400x400/f3e8ff/581c87?text=Clarity", link: "#" },
+        { title: "Strategy Squad",  price: "₹5,999",  tag: "Growth",   image: "https://placehold.co/400x400/fde68a/4c1d95?text=Strategy", link: "#" },
+        { title: "Legacy Leaders",  price: "₹9,999",  tag: "Advanced", image: "https://placehold.co/400x400/fed7aa/4c1d95?text=Legacy", link: "#" },
+        { title: "The Inner Circle",price: "₹19,999", tag: "Premium",  image: "https://placehold.co/400x400/c4b5fd/1e1b4b?text=Inner", link: "#" },
       ];
 
       const grid = document.getElementById("courses-grid");
+      grid.innerHTML = courses.map(c => `
+        <a href="${c.link}" class="bg-white rounded-2xl overflow-hidden border border-orange-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col group">
+          <img src="${c.image}" alt="${c.title}" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+          <div class="p-3 sm:p-5 space-y-1">
+            <p class="text-purple-500 text-xs uppercase tracking-widest">${c.tag}</p>
+            <p class="font-bold text-gray-900 text-xs sm:text-sm">${c.title}</p>
+            <p class="text-purple-800 font-bold text-sm sm:text-base">${c.price}</p>
+          </div>
+        </a>
+      `).join("");
 
-      let html = "";
-      courses.forEach((c) => {
-        html += `
-    <a href="${c.link}" target="_blank" class="bg-white rounded-2xl overflow-hidden border border-orange-100 hover:shadow-xl hover:-translate-y-2 transition flex flex-col">
-      <img src="${c.image}" alt="${c.title}" class="w-full aspect-square object-cover" />
-      <div class="p-5 space-y-2">
-        <p class="text-purple-500 text-xs uppercase tracking-widest">${c.tag}</p>
-        <p class="font-bold text-gray-900 text-sm">${c.title}</p>
-        <p class="text-purple-800 font-bold">${c.price}</p>
-      </div>
-    </a>
-  `;
-      });
-
-      grid.innerHTML = html;
-
+      // ── Testimonials Carousel ──
       const testimonials = [
-        {
-          name: "Sneha Parab",
-          position: "Social Expertise",
-          testimonial:
-            "I had the pleasure of attending Massarat’s Vibes & Verbs session during our business networking meeting, and it was truly insightful. Her approach was clear, engaging, and full of practical value. The session brought great energy to the room and left us all with meaningful takeaways. It was a wonderful experience, and I’m glad I got to be a part of it.",
-        },
-        {
-          name: "Asha Mahadevaswamy",
-          position: "The Kamala Flow",
-          testimonial:
-            "Massarat Ma’am is truly inspiring and has played a significant role in the growth of my business. Her guidance brings clarity, confidence, and a fresh perspective that pushed me to become my best.",
-        },
-        {
-          name: "Nandini Karmarkar",
-          position: "Nutrilite",
-          testimonial:
-            "Massarat Kang is one of the best trainers I have ever seen. I have done a few workshops with her and each one has been excellent value. She has the ability to simplify the most difficult concepts. She has a thorough knowledge of various types of businesses and offers valuable and practical advice to enhance your business.",
-        },
-        {
-          name: "Flora Lopes",
-          position: "Co-Founder - Da Baker",
-          testimonial:
-            "Massarat Kang is a well-established holistic business coach with extensive knowledge and deep expertise in the world of business. She provides valuable guidance to startups, supports independent businesswomen, and helps established organizations put effective systems in place. Attending her workshops is an enriching experience, as she shares practical, real-world examples that can be applied with ease to your own ventures. In short, Massarat truly knows her subject. She brings boundless enthusiasm and a consistent “can-do” attitude, inspiring everyone she works with to achieve greater success. Flora Lopes",
-        },
-        {
-          name: "Divya Sharma",
-          position: "Glam up by Divyaa.",
-          testimonial:
-            "Massarat Kang is a highly accomplished business coach with an exceptional command over professional growth and leadership development. Her structured methodologies, strategic insights, and ability to deliver clear, outcome-oriented guidance truly distinguish her in her field. Having personally attended her sessions, I can confidently affirm the high level of excellence, integrity, and professionalism she demonstrates in every aspect of her work.Beyond her expertise, Massarat is remarkably kind-hearted, approachable, and genuinely committed to understanding the unique needs of each individual. Her friendly nature and empathetic approach create a positive, supportive, and highly motivating environment for personal and professional growth.",
-        },
-        {
-          name: "Tricia Saldanha",
-          position: "Green Aura",
-          testimonial:
-            "Massarat Kaur Kang comes up with unique business coaching subjects. I myself attended her course. Her coaching style is interactive, interesting and motivational offering personalized attention and fostering a learning environment. Massarat is well versed with all modern day issues regarding business startups and is an expert in business scaling and revenue growth. Highly recommended her coaching classes. She is an excellent coach with lots of patience and a lovely personality",
-        },
-        {
-          name: "Sneha",
-          position: "Insurance",
-          testimonial:
-            "Thankyou Massarat Kaur Kang for holding such an insightful session today for all of us, really helped us think beyond our realme and definately will find the answers to the questions we went clueless about, but which were necessary when it came to scaling our businesses.",
-        },
-        {
-          name: "Aisha Shaikh",
-          position: "Aisha's Kitchen",
-          testimonial:
-            "Massarat Kaur Kang She’s really good at giving business tips, and she makes everything sound easy to understand.I like the way she explains things because it’s simple and helpful. She puts effort into what she shares, and it shows in how useful her advice is.She’s very empathetic and a very kind person and the right person to approach when needing advice",
-        },
+        { name: "Sneha Parab",         position: "Social Expertise",     testimonial: "I had the pleasure of attending Massarat's Vibes & Verbs session during our business networking meeting, and it was truly insightful. Her approach was clear, engaging, and full of practical value. The session brought great energy to the room and left us all with meaningful takeaways. It was a wonderful experience, and I'm glad I got to be a part of it." },
+        { name: "Asha Mahadevaswamy", position: "The Kamala Flow",      testimonial: "Massarat Ma'am is truly inspiring and has played a significant role in the growth of my business. Her guidance brings clarity, confidence, and a fresh perspective that pushed me to become my best." },
+        { name: "Nandini Karmarkar",  position: "Nutrilite",            testimonial: "Massarat Kang is one of the best trainers I have ever seen. I have done a few workshops with her and each one has been excellent value. She has the ability to simplify the most difficult concepts. She has a thorough knowledge of various types of businesses and offers valuable and practical advice to enhance your business." },
+        { name: "Flora Lopes",        position: "Co-Founder - Da Baker", testimonial: "Massarat Kang is a well-established holistic business coach with extensive knowledge and deep expertise in the world of business. She provides valuable guidance to startups, supports independent businesswomen, and helps established organizations put effective systems in place. Attending her workshops is an enriching experience — practical, real-world examples you can apply to your own ventures with ease." },
+        { name: "Divya Sharma",       position: "Glam up by Divyaa",    testimonial: "Massarat Kang is a highly accomplished business coach with exceptional command over professional growth and leadership development. Her structured methodologies, strategic insights, and clear, outcome-oriented guidance truly distinguish her in her field. Beyond her expertise, she is remarkably kind-hearted, approachable, and genuinely committed to understanding the unique needs of each individual." },
+        { name: "Tricia Saldanha",    position: "Green Aura",           testimonial: "Massarat Kaur Kang comes up with unique business coaching subjects. Her coaching style is interactive, interesting and motivational — offering personalized attention and fostering a wonderful learning environment. She is well versed with all modern day issues regarding business startups and is an expert in business scaling and revenue growth. Highly recommended!" },
+        { name: "Sneha",              position: "Insurance",            testimonial: "Thank you Massarat Kaur Kang for holding such an insightful session — it really helped us think beyond our comfort zones and find answers to the questions we went clueless about, but which were necessary when it came to scaling our businesses." },
+        { name: "Aisha Shaikh",       position: "Aisha's Kitchen",      testimonial: "Massarat Kaur Kang is really good at giving business tips, and she makes everything sound easy to understand. She has a thorough knowledge and offers practical advice. She's very empathetic, a kind person, and exactly the right person to approach when needing business guidance." },
       ];
+
       const track = document.getElementById("track");
       const dotsContainer = document.getElementById("dots");
       const total = testimonials.length;
+      let current = 0;
+      let isAnimating = false;
+      let autoPlay;
 
-      function buildCard(t) {
-        const card = document.createElement("div");
-        card.className = "min-w-full px-4 flex";
-        card.innerHTML = `
-    <div class="bg-orange-50 rounded-3xl p-10 md:p-14 shadow-sm border border-orange-100 w-full justify-center flex flex-col ">
-      <span class="font-bold text-4xl text-purple-700 italic ">"</span>
-      <div>
-        <p class="text-gray-700 text-sm md:text-xl leading-relaxed italic mb-2 line-clamp-6">${t.testimonial}</p>
-        <button class="text-purple-700 text-sm font-semibold read-more-btn hidden">Read more</button>
-      </div>
-      <div class="flex items-center mt-5 gap-4">
-        <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-purple-200 flex items-center justify-center text-purple-800 font-bold text-sm md:text-lg shrink-0">${t.name.charAt(0)}</div>
-        <div>
-          <p class="font-bold text-gray-900">${t.name}</p>
-          <p class="text-purple-600 text-xs md:text-sm">${t.position}</p>
-        </div>
-      </div>
-    </div>`;
-        const p = card.querySelector("p");
-        const btn = card.querySelector(".read-more-btn");
+      // Build slides
+      testimonials.forEach((t, i) => {
+        const slide = document.createElement("div");
+        slide.className = "carousel-slide";
+        slide.innerHTML = `
+          <div class="bg-orange-50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 shadow-sm border border-orange-100">
+            <span class="text-4xl sm:text-5xl text-purple-700 italic font-bold leading-none block mb-3">"</span>
+            <div class="relative">
+              <p class="text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed italic line-clamp-5 testimonial-text">${t.testimonial}</p>
+              <button class="read-more-btn text-purple-700 text-xs sm:text-sm font-semibold mt-2 underline hidden">Read more</button>
+            </div>
+            <div class="flex items-center mt-5 sm:mt-6 gap-3 sm:gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-purple-200 flex items-center justify-center text-purple-800 font-bold text-sm sm:text-lg shrink-0">${t.name.charAt(0)}</div>
+              <div>
+                <p class="font-bold text-gray-900 text-sm sm:text-base">${t.name}</p>
+                <p class="text-purple-600 text-xs sm:text-sm">${t.position}</p>
+              </div>
+            </div>
+          </div>`;
+
+        const p = slide.querySelector(".testimonial-text");
+        const btn = slide.querySelector(".read-more-btn");
         btn.addEventListener("click", () => {
-          const clamped = p.classList.toggle("line-clamp-6");
+          const clamped = p.classList.toggle("line-clamp-5");
           btn.textContent = clamped ? "Read more" : "Read less";
         });
-        return card;
-      }
 
-      function checkClamp(card) {
-        const p = card.querySelector("p");
-        const btn = card.querySelector(".read-more-btn");
-        if (p.scrollHeight > p.clientHeight) {
-          btn.classList.remove("hidden");
-        }
-      }
-      testimonials.forEach((t) => track.appendChild(buildCard(t)));
+        track.appendChild(slide);
+      });
 
-      const firstClone = buildCard(testimonials[0]);
-      const lastClone = buildCard(testimonials[total - 1]);
-      track.appendChild(firstClone);
-      track.insertBefore(lastClone, track.firstChild);
-
-      let current = 1;
-
+      // Build dots
       testimonials.forEach((_, i) => {
         const dot = document.createElement("button");
-        dot.className = "w-3 h-3 rounded-full bg-purple-300";
-        if (i === 0) dot.classList.add("active");
-        dot.addEventListener("click", () => goTo(i + 1));
+        dot.className = "dot" + (i === 0 ? " active" : "");
+        dot.setAttribute("aria-label", `Go to slide ${i + 1}`);
+        dot.addEventListener("click", () => goTo(i));
         dotsContainer.appendChild(dot);
       });
 
-      requestAnimationFrame(() => checkClamp(track.children[current]));
-
-      function updateUI(animate = true) {
-        if (!animate) track.style.transition = "none";
-        else track.style.transition = "";
-        track.style.transform = `translateX(-${current * 100}%)`;
-        const realIndex = (current - 1 + total) % total;
-        Array.from(dotsContainer.children).forEach((dot, i) => {
-          if (i === realIndex) {
-            dot.classList.add("bg-purple-600", "scale-125");
-            dot.classList.remove("bg-purple-300");
-          } else {
-            dot.classList.remove("bg-purple-600", "scale-125");
-            dot.classList.add("bg-purple-300");
-          }
+      function updateDots() {
+        Array.from(dotsContainer.children).forEach((d, i) => {
+          d.classList.toggle("active", i === current);
         });
       }
 
-      function goTo(index) {
-        current = index;
-        updateUI();
-        checkClamp(track.children[current]);
-
-        // If we landed on a clone, silently jump to the real slide
+      function checkReadMore(index) {
+        const slide = track.children[index];
+        if (!slide) return;
+        const p = slide.querySelector(".testimonial-text");
+        const btn = slide.querySelector(".read-more-btn");
+        if (!p || !btn) return;
+        // Reset first
+        p.classList.add("line-clamp-5");
+        btn.textContent = "Read more";
+        requestAnimationFrame(() => {
+          btn.classList.toggle("hidden", p.scrollHeight <= p.clientHeight);
+        });
       }
-      track.addEventListener("transitionend", () => {
-        if (current === 0) {
-          current = total;
-          updateUI(false);
+
+      function goTo(index, animate = true) {
+        if (isAnimating) return;
+        current = (index + total) % total;
+        isAnimating = true;
+
+        if (animate) {
+          track.style.transition = "transform 0.5s cubic-bezier(0.4,0,0.2,1)";
+        } else {
+          track.style.transition = "none";
         }
-        if (current === total + 1) {
-          current = 1;
-          updateUI(false);
-        }
+        track.style.transform = `translateX(-${current * 100}%)`;
+        updateDots();
+        checkReadMore(current);
+
+        setTimeout(() => { isAnimating = false; }, animate ? 520 : 0);
+      }
+
+      document.getElementById("prev-btn").onclick = () => goTo(current - 1);
+      document.getElementById("next-btn").onclick = () => goTo(current + 1);
+
+      function startAutoPlay() {
+        autoPlay = setInterval(() => goTo(current + 1), 5000);
+      }
+      function stopAutoPlay() { clearInterval(autoPlay); }
+
+      const carousel = document.getElementById("carousel");
+      carousel.addEventListener("mouseenter", stopAutoPlay);
+      carousel.addEventListener("mouseleave", startAutoPlay);
+
+      // Touch swipe support
+      let touchStartX = 0;
+      carousel.addEventListener("touchstart", e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+      carousel.addEventListener("touchend", e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
       });
 
-      document.getElementById("next-btn").onclick = () => goTo(current + 1);
-      document.getElementById("prev-btn").onclick = () => goTo(current - 1);
+      // Init
+      goTo(0, false);
+      startAutoPlay();
 
-      // Auto-play
-      let autoPlay = setInterval(() => goTo(current + 1), 5000);
-      document.getElementById("carousel").onmouseenter = () =>
-        clearInterval(autoPlay);
-      document.getElementById("carousel").onmouseleave = () =>
-        (autoPlay = setInterval(() => goTo(current + 1), 5000));
+      // Check read-more after fonts load
+      document.fonts.ready.then(() => checkReadMore(current));
     </script>
   </body>
 </html>
