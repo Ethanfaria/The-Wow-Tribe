@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank You – The Wow Tribe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon-16x16.png"
+    />
+    <link rel="icon" href="assets/favicon.ico" />
+    <link rel="manifest" href="assets/site.webmanifest" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Libre Baskerville", serif;
+        margin: 0;
+      }
+
+      /* NAV */
+      #navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        transition:
+          background-color 0.3s,
+          box-shadow 0.3s;
+      }
+      #navbar.scrolled {
+        background: rgba(255, 247, 237, 0.96);
+        box-shadow: 0 2px 16px rgba(80, 0, 120, 0.08);
+        backdrop-filter: blur(8px);
+      }
+
+      #menu-toggle {
+        display: none;
+      }
+      #hamburger {
+        display: none;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 5px;
+      }
+      #hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: #581c87;
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      #menu-toggle:checked ~ #nav-links {
+        display: flex;
+      }
+      #menu-toggle:checked ~ #hamburger span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      #menu-toggle:checked ~ #hamburger span:nth-child(2) {
+        opacity: 0;
+      }
+      #menu-toggle:checked ~ #hamburger span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      @media (max-width: 767px) {
+        #hamburger {
+          display: flex;
+        }
+        #nav-links {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          align-items: center;
+          gap: 0;
+          background: rgba(255, 247, 237, 0.98);
+          box-shadow: 0 8px 24px rgba(80, 0, 120, 0.12);
+          padding: 1rem 0 1.5rem;
+        }
+        #nav-links a {
+          padding: 0.75rem 2rem;
+          width: 100%;
+          text-align: center;
+        }
+        #nav-links .cta-btn {
+          margin: 0.5rem auto 0;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-orange-50 flex flex-col min-h-screen">
+    <!-- NAVBAR -->
+    <nav id="navbar" class="w-full">
+      <div
+        class="w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20 md:h-24"
+      >
+        <a href="index.html" class="flex items-center gap-3 shrink-0">
+          <img src="assets/logo.svg" class="h-24 w-auto" alt="The Wow Tribe" />
+        </a>
+        <label id="hamburger" for="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </label>
+        <input type="checkbox" id="menu-toggle" class="sr-only" />
+        <div id="nav-links" class="hidden md:flex items-center gap-1 lg:gap-2">
+          <a
+            href="index.html"
+            class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium"
+            >Home</a
+          >
+          <a
+            href="about.html"
+            class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium"
+            >About</a
+          >
+          <a
+            href="services.html"
+            class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium"
+            >Services</a
+          >
+          <a
+            href="contact.html"
+            class="cta-btn ml-3 px-5 py-2 bg-purple-800 text-white text-sm rounded-full hover:bg-purple-700 transition font-medium shadow-sm"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- THANK YOU CONTENT -->
+    <main class="flex-grow flex items-center justify-center pt-32 pb-16 px-4">
+      <div
+        class="max-w-2xl w-full bg-white rounded-3xl p-10 sm:p-14 border border-orange-100 shadow-sm text-center space-y-8"
+      >
+        <div
+          class="w-20 h-20 mx-auto bg-orange-200 rounded-full flex items-center justify-center shadow-sm"
+        >
+          <svg
+            class="w-10 h-10 text-purple-900"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"
+            ></path>
+          </svg>
+        </div>
+
+        <div class="space-y-4">
+          <h1 class="text-4xl sm:text-5xl font-bold text-gray-900">
+            Thank <span class="italic text-purple-800">You</span>
+          </h1>
+          <p
+            class="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed max-w-lg mx-auto"
+          >
+            We've received your application and will contact you shortly. Your
+            journey with the tribe begins soon.
+          </p>
+        </div>
+
+        <div class="pt-6">
+          <a
+            href="index.html"
+            class="inline-block border-2 border-purple-800 text-purple-800 font-bold hover:bg-purple-800 hover:text-white rounded-full py-3 px-8 transition-colors duration-300"
+          >
+            Return to Home
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer
+      class="bg-violet-950 border-t border-purple-800 py-6 px-4 text-center"
+    >
+      <p class="text-purple-400 text-xs sm:text-sm">
+        © 2026 The Wow Tribe. All rights reserved.
+      </p>
+    </footer>
+
+    <script>
+      // Navbar scroll
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        navbar.classList.toggle("scrolled", window.scrollY > 30);
+      });
+    </script>
+  </body>
+</html>
