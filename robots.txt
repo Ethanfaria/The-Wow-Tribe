@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.thewowtribe.com/sitemap.xml
+Sitemap: https://wow.massaratkang.com/sitemap.xml
