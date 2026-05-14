@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Services & Membership – The Wow Tribe | Business Coaching for Women
+    </title>
+    <meta
+      name="description"
+      content="Explore The Wow Tribe's membership tiers — Starter, Growth, and Visionary — offering business masterclasses, strategy clinics, grooming workshops, and 1-on-1 coaching for women entrepreneurs in India."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon-16x16.png"
+    />
+    <link rel="icon" href="assets/favicon.ico" />
+    <link rel="manifest" href="assets/site.webmanifest" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Libre Baskerville", serif;
+        margin: 0;
+      }
+
+      /* NAV */
+      #navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        transition:
+          background 0.3s,
+          box-shadow 0.3s;
+      }
+      #navbar.scrolled {
+        background: rgba(255, 247, 237, 0.96);
+        box-shadow: 0 2px 16px rgba(80, 0, 120, 0.08);
+        backdrop-filter: blur(8px);
+      }
+
+      #menu-toggle {
+        display: none;
+      }
+      #hamburger {
+        display: none;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 5px;
+      }
+      #hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: #581c87;
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      #menu-toggle:checked ~ #nav-links {
+        display: flex;
+      }
+      #menu-toggle:checked ~ #hamburger span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      #menu-toggle:checked ~ #hamburger span:nth-child(2) {
+        opacity: 0;
+      }
+      #menu-toggle:checked ~ #hamburger span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      @media (max-width: 767px) {
+        #hamburger {
+          display: flex;
+        }
+        #nav-links {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          align-items: center;
+          gap: 0;
+          background: rgba(255, 247, 237, 0.98);
+          box-shadow: 0 8px 24px rgba(80, 0, 120, 0.12);
+          padding: 1rem 0 1.5rem;
+        }
+        #nav-links a {
+          padding: 0.75rem 2rem;
+          width: 100%;
+          text-align: center;
+        }
+        #nav-links .cta-btn {
+          margin: 0.5rem auto 0;
+        }
+      }
+
+      /* Reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* Tier card highlight */
+      .tier-card {
+        transition: all 0.25s ease;
+      }
+      .tier-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(80, 0, 120, 0.15);
+      }
+      .tier-featured {
+        outline: 3px solid #fed7aa;
+        box-shadow: 0 12px 32px rgba(253, 186, 116, 0.3);
+      }
+
+      /* Check list */
+      .check-item::before {
+        content: "✓";
+        color: #f97316;
+        font-weight: 700;
+        margin-right: 8px;
+        flex-shrink: 0;
+      }
+      .check-item {
+        display: flex;
+        align-items: flex-start;
+      }
+
+      /* Tag badge */
+      .badge {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 2px 10px;
+        border-radius: 9999px;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body class="bg-orange-50">
+    <!-- NAVBAR -->
+    <nav id="navbar" class="w-full">
+      <div
+        class="w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20 md:h-24"
+      >
+        <a href="index.html" class="flex items-center gap-3 shrink-0">
+          <img src="assets/logo.svg" class="h-24 w-auto" alt="The Wow Tribe" />
+        </a>
+        <label id="hamburger" for="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </label>
+        <input type="checkbox" id="menu-toggle" class="sr-only" />
+        <div id="nav-links" class="hidden md:flex items-center gap-1 lg:gap-2">
+          <a
+            href="index.html"
+            class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium"
+            >Home</a
+          >
+          <a
+            href="about.html"
+            class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium"
+            >About</a
+          >
+          <a
+            href="services.html"
+            class="px-3 py-2 text-sm text-purple-800 font-bold border-b-2 border-purple-800"
+            >Services</a
+          >
+          <a
+            href="contact.html"
+            class="cta-btn ml-3 px-5 py-2 bg-purple-800 text-white text-sm rounded-full hover:bg-purple-700 transition font-medium shadow-sm"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section
+      class="min-h-[55vh] flex items-center pt-28 pb-16 px-4 sm:px-6 bg-orange-50"
+    >
+      <div class="max-w-3xl mx-auto text-center space-y-5">
+        <span
+          class="inline-block uppercase tracking-widest text-xs sm:text-sm bg-purple-200 rounded-full px-4 py-1.5 text-purple-900"
+          >Our Services</span
+        >
+        <h1
+          class="text-3xl sm:text-5xl md:text-6xl leading-tight font-bold text-gray-900"
+        >
+          Your Journey.<br class="hidden sm:block" />
+          Your <span class="text-purple-800 italic">Membership.</span>
+        </h1>
+        <p
+          class="text-sm sm:text-base md:text-lg text-gray-600 max-w-xl mx-auto leading-relaxed"
+        >
+          Execution-based learning — not passive listening. Choose the tier that
+          meets you where you are, and grows with you.
+        </p>
+      </div>
+    </section>
+
+    <!-- WHAT YOU GET (overview) -->
+    <section class="py-14 sm:py-16 px-4 sm:px-6 bg-violet-950 text-white">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-10 reveal">
+          <span
+            class="text-purple-300 uppercase tracking-widest text-xs sm:text-sm mb-2 block"
+            >Inside the Tribe</span
+          >
+          <h2 class="text-3xl sm:text-4xl font-bold">
+            What You <span class="italic text-orange-300">Get</span>
+          </h2>
+        </div>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 reveal">
+          <!-- items -->
+          <div
+            class="bg-purple-800/40 rounded-2xl p-5 border border-purple-700 text-sm text-purple-100 leading-relaxed flex items-start gap-3"
+          >
+            <span class="text-orange-300 text-base font-bold shrink-0">→</span
+            >Monthly Business Masterclasses
+          </div>
+          <div
+            class="bg-purple-800/40 rounded-2xl p-5 border border-purple-700 text-sm text-purple-100 leading-relaxed flex items-start gap-3"
+          >
+            <span class="text-orange-300 text-base font-bold shrink-0">→</span
+            >Personality &amp; Grooming Workshops
+          </div>
+          <div
+            class="bg-purple-800/40 rounded-2xl p-5 border border-purple-700 text-sm text-purple-100 leading-relaxed flex items-start gap-3"
+          >
+            <span class="text-orange-300 text-base font-bold shrink-0">→</span
+            >Strategy Clinics
+          </div>
+          <div
+            class="bg-purple-800/40 rounded-2xl p-5 border border-purple-700 text-sm text-purple-100 leading-relaxed flex items-start gap-3"
+          >
+            <span class="text-orange-300 text-base font-bold shrink-0">→</span
+            >SOP Templates &amp; KPI Dashboards
+          </div>
+          <div
+            class="bg-purple-800/40 rounded-2xl p-5 border border-purple-700 text-sm text-purple-100 leading-relaxed flex items-start gap-3"
+          >
+            <span class="text-orange-300 text-base font-bold shrink-0">→</span
+            >City-Based Offline Bootcamps
+          </div>
+          <div
+            class="bg-purple-800/40 rounded-2xl p-5 border border-purple-700 text-sm text-purple-100 leading-relaxed flex items-start gap-3"
+          >
+            <span class="text-orange-300 text-base font-bold shrink-0">→</span
+            >Accountability Pods &amp; Expert Feedback
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO IS THIS FOR / NOT FOR -->
+    <section class="py-16 sm:py-20 px-4 sm:px-6 bg-orange-50">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 sm:gap-8">
+        <div
+          class="bg-white rounded-3xl p-7 sm:p-10 border border-orange-100 shadow-sm reveal"
+        >
+          <span class="inline-block badge bg-green-100 text-green-800 mb-4"
+            >Who This Is For</span
+          >
+          <ul class="space-y-3 text-sm sm:text-base text-gray-700">
+            <li class="check-item">Women in retail businesses</li>
+            <li class="check-item">Home-based product founders</li>
+            <li class="check-item">Bakers, soap &amp; candle makers</li>
+            <li class="check-item">Boutique owners &amp; food brands</li>
+            <li class="check-item">Cloud kitchen operators</li>
+            <li class="check-item">Founders planning expansion</li>
+            <li class="check-item">
+              Women who want structure — not just support
+            </li>
+          </ul>
+        </div>
+        <div
+          class="bg-white rounded-3xl p-7 sm:p-10 border border-orange-100 shadow-sm reveal"
+        >
+          <span class="inline-block badge bg-red-100 text-red-700 mb-4"
+            >Who This Is Not For</span
+          >
+          <p class="text-gray-600 text-sm sm:text-base leading-relaxed mb-5">
+            We work with <strong>serious founders</strong>. The Wow Tribe is not
+            the right fit for:
+          </p>
+          <ul class="space-y-3 text-sm sm:text-base text-gray-600">
+            <li class="flex items-start gap-2">
+              <span class="text-red-400 font-bold shrink-0">✕</span>Women
+              looking only for social networking
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400 font-bold shrink-0">✕</span>Those
+              unwilling to implement
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400 font-bold shrink-0">✕</span>Hobby-based
+              entrepreneurs without growth intent
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMBERSHIP TIERS -->
+    <section class="py-16 sm:py-20 px-4 sm:px-6 bg-violet-950 text-white">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-10 sm:mb-14 reveal">
+          <span
+            class="text-purple-300 uppercase tracking-widest text-xs sm:text-sm mb-2 block"
+            >Our Approach</span
+          >
+          <h2 class="text-3xl sm:text-4xl font-bold">
+            Choose Your <span class="italic text-orange-300">Tier</span>
+          </h2>
+          <p
+            class="text-purple-200 text-sm sm:text-base mt-4 max-w-lg mx-auto leading-relaxed"
+          >
+            Three tiers. One trajectory — from clarity to strategy to legacy.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 sm:gap-8 items-start">
+          <!-- TIER 01: Starter -->
+          <div
+            class="tier-card bg-purple-900/60 rounded-3xl p-7 sm:p-8 border border-purple-700 reveal flex flex-col"
+          >
+            <div class="mb-5">
+              <span
+                class="badge bg-purple-300 text-purple-900 mb-3 inline-block"
+                >Step 01</span
+              >
+              <h3 class="text-xl sm:text-2xl font-bold">Basic</h3>
+              <p class="text-orange-300 font-bold text-sm mt-0.5">Starter</p>
+              <p class="text-purple-300 text-xs mt-1 uppercase tracking-widest">
+                For Early-Stage Founders
+              </p>
+            </div>
+            <p class="text-purple-200 text-sm leading-relaxed mb-5">
+              Ideal for new or early-stage entrepreneurs (under 2 years),
+              freelancers, and solopreneurs ready to turn an idea into a real
+              business.
+            </p>
+            <ul class="space-y-2.5 text-sm text-purple-100 mb-6 flex-1">
+              <li class="check-item">
+                1 group coaching webinar/month + recordings
+              </li>
+              <li class="check-item">
+                Access to core workshops (branding, finance, digital marketing)
+              </li>
+              <li class="check-item">1–2 city training meetups per year</li>
+              <li class="check-item">
+                Quarterly 'Hot Seat' peer-feedback sessions
+              </li>
+              <li class="check-item">
+                Private community forum &amp; WhatsApp support
+              </li>
+              <li class="check-item">Entry-level peer mentoring circles</li>
+            </ul>
+            <div
+              class="bg-purple-800/50 rounded-xl p-4 text-xs text-purple-300 mb-5"
+            >
+              <p class="font-semibold text-purple-200 mb-1">Optional Add-ons</p>
+              Discounted 1:1 coaching, advanced training &amp; specialised
+              bootcamps.
+            </div>
+            <a
+              href="contact.html"
+              class="block text-center px-6 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-500 transition font-medium text-sm"
+            >
+              Get Started
+            </a>
+          </div>
+
+          <!-- TIER 02: Growth (Featured) -->
+          <div
+            class="tier-card tier-featured bg-purple-800 rounded-3xl p-7 sm:p-8 border border-orange-300 reveal flex flex-col relative"
+          >
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+              <span
+                class="badge bg-orange-300 text-purple-900 px-5 py-1.5 text-xs shadow-md"
+                >Most Popular</span
+              >
+            </div>
+            <div class="mb-5 mt-2">
+              <span
+                class="badge bg-orange-200 text-orange-900 mb-3 inline-block"
+                >Step 02</span
+              >
+              <h3 class="text-xl sm:text-2xl font-bold">Professional</h3>
+              <p class="text-orange-300 font-bold text-sm mt-0.5">Growth</p>
+              <p class="text-purple-300 text-xs mt-1 uppercase tracking-widest">
+                For the Growth-Driven Founder
+              </p>
+            </div>
+            <p class="text-purple-100 text-sm leading-relaxed mb-5">
+              Best for business owners 2–5 years in, ready to scale past ₹20–50
+              lakh. You have a product and team — now you need the strategy and
+              systems.
+            </p>
+            <ul class="space-y-2.5 text-sm text-white mb-6 flex-1">
+              <li class="check-item">
+                2 expert-led masterclass webinars/month
+              </li>
+              <li class="check-item">
+                Full access to all member workshops (no extra cost)
+              </li>
+              <li class="check-item">Free entry to quarterly bootcamps</li>
+              <li class="check-item">
+                3–4 exclusive city chapter events per year
+              </li>
+              <li class="check-item">
+                Bi-monthly 'Catalyst Clinics' — small-group expert mentoring
+              </li>
+              <li class="check-item">
+                Business spotlight in Tribe newsletter &amp; social media
+              </li>
+              <li class="check-item">Accountability partner pairings</li>
+            </ul>
+            <div
+              class="bg-purple-700/50 rounded-xl p-4 text-xs text-purple-200 mb-5"
+            >
+              <p class="font-semibold text-white mb-1">Optional Add-ons</p>
+              Up to 5 hrs of 1:1 coaching/year at 25% discount. Early-bird
+              pricing on leadership retreats.
+            </div>
+            <a
+              href="contact.html"
+              class="block text-center px-6 py-3 bg-orange-300 text-purple-900 rounded-full hover:bg-orange-200 transition font-bold text-sm"
+            >
+              Join Now
+            </a>
+          </div>
+
+          <!-- TIER 03: Visionary -->
+          <div
+            class="tier-card bg-purple-900/60 rounded-3xl p-7 sm:p-8 border border-purple-700 reveal flex flex-col"
+          >
+            <div class="mb-5">
+              <span
+                class="badge bg-purple-300 text-purple-900 mb-3 inline-block"
+                >Step 03</span
+              >
+              <h3 class="text-xl sm:text-2xl font-bold">Premium</h3>
+              <p class="text-orange-300 font-bold text-sm mt-0.5">Visionary</p>
+              <p class="text-purple-300 text-xs mt-1 uppercase tracking-widest">
+                For the Industry Leader
+              </p>
+            </div>
+            <p class="text-purple-200 text-sm leading-relaxed mb-5">
+              For established entrepreneurs (5+ years) scaling toward 7-figure
+              enterprises — women leading industries and building legacies.
+            </p>
+            <ul class="space-y-2.5 text-sm text-purple-100 mb-6 flex-1">
+              <li class="check-item">
+                Weekly small-group mastermind (max 12) with senior coaches
+              </li>
+              <li class="check-item">
+                Unlimited access to all workshops, masterclasses &amp; archives
+              </li>
+              <li class="check-item">
+                Quarterly VIP retreats &amp; monthly CEO Roundtables
+              </li>
+              <li class="check-item">
+                Premium networking dinners with top industry leaders
+              </li>
+              <li class="check-item">
+                Personalised annual strategy review with senior coach
+              </li>
+              <li class="check-item">'Tribe Leader' board membership</li>
+              <li class="check-item">
+                Spotlight articles &amp; interviews on The Wow Tribe platform
+              </li>
+              <li class="check-item">
+                Lifetime access to private alumni network
+              </li>
+            </ul>
+            <div
+              class="bg-purple-800/50 rounded-xl p-4 text-xs text-purple-300 mb-5"
+            >
+              <p class="font-semibold text-purple-200 mb-1">Optional Add-ons</p>
+              1:1 coaching intensive (10 hrs), advanced leadership coaching,
+              potential funded international summits.
+            </div>
+            <a
+              href="contact.html"
+              class="block text-center px-6 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-500 transition font-medium text-sm"
+            >
+              Apply Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY JOIN NOW (urgency / problem) -->
+    <section class="py-16 sm:py-20 px-4 sm:px-6 bg-orange-50">
+      <div class="max-w-3xl mx-auto text-center reveal">
+        <span
+          class="text-purple-500 uppercase tracking-widest text-xs sm:text-sm mb-3 block"
+          >Why Join Now</span
+        >
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+          Networking Doesn't Fix<br /><span class="text-purple-800 italic"
+            >Broken Systems.</span
+          >
+        </h2>
+        <div class="grid sm:grid-cols-2 gap-4 text-left mb-8">
+          <div
+            class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm"
+          >
+            <p class="text-purple-900 font-bold text-sm mb-1">
+              Your stress won't reduce
+            </p>
+            <p class="text-gray-600 text-sm">
+              with more contacts. It reduces with structured systems.
+            </p>
+          </div>
+          <div
+            class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm"
+          >
+            <p class="text-purple-900 font-bold text-sm mb-1">
+              Your profit won't increase
+            </p>
+            <p class="text-gray-600 text-sm">
+              without a strategy. Revenue follows structure.
+            </p>
+          </div>
+          <div
+            class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm"
+          >
+            <p class="text-purple-900 font-bold text-sm mb-1">
+              Your brand won't grow
+            </p>
+            <p class="text-gray-600 text-sm">
+              without leadership presence and personal brand positioning.
+            </p>
+          </div>
+          <div
+            class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm"
+          >
+            <p class="text-purple-900 font-bold text-sm mb-1">
+              Your confidence won't build
+            </p>
+            <p class="text-gray-600 text-sm">
+              without deliberate training. Hustle alone has a ceiling.
+            </p>
+          </div>
+        </div>
+        <p class="text-gray-500 text-sm italic mb-6">
+          The longer you wait, the longer your business stays dependent on
+          hustle instead of systems.
+        </p>
+        <a
+          href="contact.html"
+          class="inline-block px-8 py-3.5 bg-purple-800 text-white rounded-full hover:bg-purple-700 transition font-bold text-sm sm:text-base shadow-md"
+        >
+          Join the Wow Tribe Today
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+      class="bg-violet-950 border-t border-purple-800 py-6 px-4 text-center"
+    >
+      <p class="text-purple-400 text-xs sm:text-sm">
+        © 2026 The Wow Tribe. All rights reserved.
+      </p>
+    </footer>
+
+    <script>
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        navbar.classList.toggle("scrolled", window.scrollY > 30);
+      });
+
+      const revealEls = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      revealEls.forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
