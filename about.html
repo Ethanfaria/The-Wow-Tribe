@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      About Us – The Wow Tribe | Women Entrepreneurs Community India
+      About The WOW Tribe | Our Story, Founders & Mission | Women Entrepreneur
+      Community India
     </title>
     <meta
       name="description"
-      content="The Wow Tribe is India's premier education and expansion ecosystem for women entrepreneurs. Learn about our mission, our coaches Massarat Kang and Divyaa R Sharma, and how we turn home-based businesses into scalable brands."
+      content="Meet Massarat Kang and Divyaa R Sharma — the founders behind The WOW Tribe. Learn about our mission to empower women entrepreneurs across India through business coaching and personality development."
     />
     <!-- Open Graph -->
     <meta
@@ -30,7 +31,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Sora:wght@100..800&display=swap"
       rel="stylesheet"
     />
     <link
@@ -169,6 +170,7 @@
         font-variant-numeric: tabular-nums;
       }
     </style>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-orange-50">
     <!-- NAVBAR -->
@@ -210,118 +212,156 @@
 
     <!-- HERO -->
     <section
-      class="min-h-[60vh] flex items-center pt-28 pb-16 px-4 sm:px-6 bg-orange-50"
+      class="relative min-h-[65vh] flex items-center pt-40 pb-32 px-4 sm:px-6 bg-gradient-to-b from-violet-950 via-violet-900 to-violet-950 overflow-hidden"
     >
-      <div class="max-w-3xl mx-auto text-center space-y-5">
+      <div class="max-w-4xl mx-auto text-center space-y-6 relative z-10">
         <span
-          class="inline-block uppercase tracking-widest text-xs sm:text-sm bg-purple-200 rounded-full px-4 py-1.5 text-purple-900"
-          >Our Story</span
+          class="inline-flex items-center uppercase tracking-[0.25em] text-xs sm:text-sm bg-purple-200/90 rounded-full px-5 py-2 text-purple-900 font-medium"
         >
+          Our Story
+        </span>
+
         <h1
-          class="text-3xl sm:text-5xl md:text-6xl leading-tight font-bold text-gray-900"
+          class="text-4xl sm:text-6xl md:text-7xl leading-tight font-bold text-white"
         >
-          More Than a Network.<br class="hidden sm:block" />
-          A <span class="text-purple-800 italic">Movement.</span>
+          We built the room
+          <br class="hidden sm:block" />
+          we <span class="text-orange-300 italic">wished existed.</span>
         </h1>
+
         <p
-          class="text-sm sm:text-base md:text-lg text-gray-600 max-w-xl mx-auto leading-relaxed"
+          class="text-base sm:text-lg md:text-xl text-violet-100/90 max-w-2xl mx-auto leading-relaxed"
         >
-          Founded in 2020, The Wow Tribe is India's education and expansion
-          ecosystem for women entrepreneurs — built to bridge the gap between
-          hobby and empire.
+          The WOW Tribe was born from a simple frustration: women entrepreneurs
+          couldn't find support that combined business strategy, confidence, and
+          leadership growth in one place.
         </p>
       </div>
+
+      <!-- Decorative Glow -->
+      <div
+        class="absolute top-20 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-orange-400/10 blur-3xl rounded-full"
+      ></div>
     </section>
 
-    <!-- STATS STRIP -->
-    <section class="bg-violet-950 py-10 px-4">
-      <div class="max-w-4xl mx-auto grid grid-cols-3 gap-4 text-center">
-        <div>
-          <p class="text-3xl sm:text-4xl font-bold text-orange-300 stat-num">
-            30+
-          </p>
-          <p class="text-purple-300 text-xs uppercase tracking-widest mt-1">
-            Years of Experience
-          </p>
-        </div>
-        <div>
-          <p class="text-3xl sm:text-4xl font-bold text-orange-300 stat-num">
-            98%
-          </p>
-          <p class="text-purple-300 text-xs uppercase tracking-widest mt-1">
-            Satisfied Members
-          </p>
-        </div>
-        <div>
-          <p class="text-3xl sm:text-4xl font-bold text-orange-300 stat-num">
-            40+
-          </p>
-          <p class="text-purple-300 text-xs uppercase tracking-widest mt-1">
-            Locations Scaled
-          </p>
+    <!-- STATS -->
+    <section class="px-4 sm:px-6 -mt-12 relative z-20">
+      <div
+        class="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl border border-purple-100"
+      >
+        <div
+          class="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-purple-100"
+        >
+          <div class="p-8 text-center">
+            <p class="text-4xl md:text-5xl font-bold text-violet-900">30+</p>
+            <p class="text-sm uppercase tracking-widest text-gray-500 mt-2">
+              Years of Experience
+            </p>
+          </div>
+
+          <div class="p-8 text-center">
+            <p class="text-4xl md:text-5xl font-bold text-violet-900">98%</p>
+            <p class="text-sm uppercase tracking-widest text-gray-500 mt-2">
+              Member Satisfaction
+            </p>
+          </div>
+
+          <div class="p-8 text-center">
+            <p class="text-4xl md:text-5xl font-bold text-violet-900">40+</p>
+            <p class="text-sm uppercase tracking-widest text-gray-500 mt-2">
+              Businesses Supported
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- THE REAL PROBLEM -->
-    <section class="py-16 sm:py-20 px-4 sm:px-6 bg-orange-50">
-      <div class="max-w-5xl mx-auto reveal">
+    <section class="py-16 sm:py-20 px-4 sm:px-4 bg-orange-50">
+      <div class="max-w-6xl mx-auto reveal">
         <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+          <!-- Left Content -->
           <div class="space-y-5">
             <span
               class="inline-block uppercase tracking-widest text-xs text-purple-500 mb-1"
-              >The Platform Edge</span
             >
-            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">
-              Beyond Networking.<br /><span class="text-purple-800 italic"
-                >Business Mastery.</span
-              >
+              Our Mission
+            </span>
+
+            <h2
+              class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight"
+            >
+              Business strategy meets
+              <span class="text-purple-800 italic">inner strength</span>
             </h2>
+
             <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-              Most networking platforms focus on lead exchange. That doesn't
-              solve the core reason women-owned businesses stagnate: lack of
-              systems, strategic planning, and brand confidence.
+              Most business communities focus only on tactics. Most coaching
+              focuses only on mindset. The WOW Tribe is built on the belief that
+              these two are inseparable — that the woman running the business is
+              as important as the business itself.
             </p>
-            <p
-              class="text-gray-600 text-sm sm:text-base leading-relaxed font-semibold"
+
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              We create environments where ambitious women can build sharper
+              strategies, show up with more confidence, and find the sisterhood
+              that makes the journey sustainable.
+            </p>
+
+            <a
+              href="services.html"
+              class="inline-flex items-center bg-purple-800 hover:bg-purple-900 text-white px-6 py-3 rounded-full text-sm font-medium transition"
             >
-              The Wow Tribe flips the model. We are an Education &amp; Expansion
-              Ecosystem first — a network second.
-            </p>
+              Explore Our Programs
+            </a>
           </div>
+
+          <!-- Right Content -->
           <div class="space-y-4">
             <div
-              class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm"
+              class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm flex gap-4"
             >
-              <p class="font-bold text-purple-900 text-sm mb-1">
-                ◉ Franchise &amp; Expansion Focus
-              </p>
-              <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                Moving from single-unit home business to multi-location retail
-                brands.
-              </p>
+              <div class="text-2xl">🎯</div>
+              <div>
+                <h4 class="font-bold text-purple-900 text-sm mb-1">
+                  Built for India's Women Entrepreneurs
+                </h4>
+                <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                  We understand the specific pressures, cultural contexts, and
+                  opportunities that shape women-led businesses in India.
+                </p>
+              </div>
             </div>
+
             <div
-              class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm"
+              class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm flex gap-4"
             >
-              <p class="font-bold text-purple-900 text-sm mb-1">
-                ◉ Operational Psychology
-              </p>
-              <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                Understanding how Sales, Ops, and Accounts communicate to reduce
-                stress and drive growth.
-              </p>
+              <div class="text-2xl">🤝</div>
+              <div>
+                <h4 class="font-bold text-purple-900 text-sm mb-1">
+                  Community That Actually Connects
+                </h4>
+                <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                  Small cohorts, curated conversations, and structured
+                  networking — not large rooms with name badges and no
+                  follow-through.
+                </p>
+              </div>
             </div>
+
             <div
-              class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm"
+              class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm flex gap-4"
             >
-              <p class="font-bold text-purple-900 text-sm mb-1">
-                ◉ The "Boss Lady" Persona
-              </p>
-              <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                Grooming and psychological training to command respect and
-                negotiate with authority.
-              </p>
+              <div class="text-2xl">📈</div>
+              <div>
+                <h4 class="font-bold text-purple-900 text-sm mb-1">
+                  Practical, Applicable, Measurable
+                </h4>
+                <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                  Every workshop leaves you with something you can act on the
+                  next morning. No theory without tools.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -333,79 +373,100 @@
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-10 sm:mb-14 reveal">
           <span
-            class="text-purple-300 uppercase tracking-widest text-xs sm:text-sm mb-2 block"
-            >Why Us</span
+            class="text-orange-300 uppercase tracking-widest text-xs sm:text-sm mb-2 block"
           >
+            What Guides Us
+          </span>
           <h2 class="text-3xl sm:text-4xl font-bold">
-            Why The <span class="italic text-orange-300">Wow Tribe?</span>
+            The WOW <span class="italic text-orange-300">Principles</span>
           </h2>
         </div>
+
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           <div
             class="bg-purple-800/50 rounded-3xl p-6 border border-purple-700 hover:bg-purple-800 transition reveal"
           >
             <p class="text-orange-300 font-bold text-lg mb-2">01</p>
             <h3 class="font-bold text-base sm:text-lg mb-2">
-              Coaching That Moves the Needle
+              Honesty over hype
             </h3>
             <p class="text-purple-200 text-sm leading-relaxed">
-              Expert-led sessions built around where you are in your
-              entrepreneurial journey - not a one-size-fits-all syllabus.
+              We don't do motivational fluff. Real progress requires real
+              feedback, given with care but never softened to the point of
+              uselessness.
             </p>
           </div>
+
           <div
             class="bg-purple-800/50 rounded-3xl p-6 border border-purple-700 hover:bg-purple-800 transition reveal"
           >
             <p class="text-orange-300 font-bold text-lg mb-2">02</p>
-            <h3 class="font-bold text-base sm:text-lg mb-2">Tribe Circles</h3>
+            <h3 class="font-bold text-base sm:text-lg mb-2">
+              Inside and Outside
+            </h3>
             <p class="text-purple-200 text-sm leading-relaxed">
-              Small groups of 8-12 women meeting monthly — real relationships,
-              real accountability, real results.
+              Business strategy and inner confidence are not separate journeys.
+              Both matter. Neither alone is enough.
             </p>
           </div>
+
           <div
             class="bg-purple-800/50 rounded-3xl p-6 border border-purple-700 hover:bg-purple-800 transition reveal"
           >
             <p class="text-orange-300 font-bold text-lg mb-2">03</p>
             <h3 class="font-bold text-base sm:text-lg mb-2">
-              A Curriculum That Grows With You
+              Community over Competition
             </h3>
             <p class="text-purple-200 text-sm leading-relaxed">
-              A three-tier curriculum - from clarity to strategy to legacy -
-              that scales with your ambition.
+              Women who support each other build faster. The WOW Tribe is not a
+              networking event, it's a genuine ecosystem of mutual growth.
             </p>
           </div>
+
           <div
             class="bg-purple-800/50 rounded-3xl p-6 border border-purple-700 hover:bg-purple-800 transition reveal"
           >
             <p class="text-orange-300 font-bold text-lg mb-2">04</p>
             <h3 class="font-bold text-base sm:text-lg mb-2">
-              Confidence as Strategy
+              Action over Inspiration
             </h3>
             <p class="text-purple-200 text-sm leading-relaxed">
-              India's only community integrating mindset, confidence, and
-              leadership development directly into business coaching.
+              Every session ends with something you can do Monday morning. We
+              measure success not in applause but in outcomes.
             </p>
           </div>
+
           <div
-            class="bg-purple-800/50 rounded-3xl p-6 border border-purple-700 hover:bg-purple-800 transition reveal sm:col-span-2 lg:col-span-1"
+            class="bg-purple-800/50 rounded-3xl p-6 border border-purple-700 hover:bg-purple-800 transition reveal"
           >
             <p class="text-orange-300 font-bold text-lg mb-2">05</p>
+            <h3 class="font-bold text-base sm:text-lg mb-2">Built for India</h3>
+            <p class="text-purple-200 text-sm leading-relaxed">
+              We understand the opportunities, pressures, and cultural realities
+              of building a business as a woman in India today.
+            </p>
+          </div>
+
+          <div
+            class="bg-purple-800/50 rounded-3xl p-6 border border-purple-700 hover:bg-purple-800 transition reveal"
+          >
+            <p class="text-orange-300 font-bold text-lg mb-2">06</p>
             <h3 class="font-bold text-base sm:text-lg mb-2">
-              Measurable Results
+              Lifelong Sisterhood
             </h3>
             <p class="text-purple-200 text-sm leading-relaxed">
-              Members track revenue growth, new clients, and confidence scores.
-              Progress - big and small - is always recognised.
+              The relationships you build here don't end when the workshop does.
+              The WOW Tribe is a community you carry with you.
             </p>
           </div>
         </div>
+
         <div class="text-center mt-10 reveal">
           <a
             href="services.html"
             class="inline-block px-7 py-3 bg-orange-300 text-purple-900 font-bold rounded-full hover:bg-orange-200 transition text-sm sm:text-base"
           >
-            Explore Membership Tiers
+            Explore Our Programs
           </a>
         </div>
       </div>
