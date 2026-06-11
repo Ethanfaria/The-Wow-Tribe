@@ -169,6 +169,18 @@
       .stat-num {
         font-variant-numeric: tabular-nums;
       }
+      #hamburger span {
+        background: #ffffff; /* was #581c87 */
+      }
+      #navbar.scrolled #nav-links a:not(.cta-btn) {
+        color: #581c87;
+      }
+      #navbar.scrolled #nav-links a:not(.cta-btn):hover {
+        color: #7e22ce;
+      }
+      #navbar.scrolled #hamburger span {
+        background: #581c87;
+      }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
@@ -188,22 +200,22 @@
         <div id="nav-links" class="hidden md:flex items-center gap-1 lg:gap-2">
           <a
             href="index.html"
-            class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium"
+            class="px-3 py-2 text-sm text-white/90 hover:text-white transition font-medium"
             >Home</a
           >
           <a
             href="about.html"
-            class="px-3 py-2 text-sm text-purple-800 font-bold border-b-2 border-purple-800"
+            class="px-3 py-2 text-sm text-white font-bold border-b-2 border-white"
             >About</a
           >
           <a
-            href="services.html"
-            class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium"
-            >Services</a
+            href="community.html"
+            class="px-3 py-2 text-sm text-white/90 hover:text-white transition font-medium"
+            >Community</a
           >
           <a
             href="contact.html"
-            class="cta-btn ml-3 px-5 py-2 bg-purple-800 text-white text-sm rounded-full hover:bg-purple-700 transition font-medium shadow-sm"
+            class="cta-btn ml-3 px-5 py-2 bg-purple-800 text-white text-sm rounded-full hover:bg-white/30 transition font-medium shadow-sm"
             >Contact</a
           >
         </div>
@@ -309,10 +321,10 @@
             </p>
 
             <a
-              href="services.html"
+              href="community.html"
               class="inline-flex items-center bg-purple-800 hover:bg-purple-900 text-white px-6 py-3 rounded-full text-sm font-medium transition"
             >
-              Explore Our Programs
+              Explore The Community
             </a>
           </div>
 
@@ -463,10 +475,10 @@
 
         <div class="text-center mt-10 reveal">
           <a
-            href="services.html"
+            href="community.html"
             class="inline-block px-7 py-3 bg-orange-300 text-purple-900 font-bold rounded-full hover:bg-orange-200 transition text-sm sm:text-base"
           >
-            Explore Our Programs
+            Explore Our Community
           </a>
         </div>
       </div>
@@ -491,23 +503,17 @@
           class="bg-white rounded-3xl overflow-hidden border border-orange-100 shadow-sm mb-6 reveal"
         >
           <div class="grid md:grid-cols-5">
-            <div
-              class="md:col-span-2 bg-purple-100 flex items-center justify-center p-10 min-h-[220px]"
-            >
-              <div
-                class="w-36 h-36 sm:w-44 sm:h-44 lg:w-52 lg:h-52 rounded-full overflow-hidden shadow-md"
-              >
-                <img
-                  src="assets/massarat.webp"
-                  alt="Massarat Kang"
-                  class="w-full h-full object-cover"
-                />
-              </div>
+            <div class="md:col-span-2 min-h-[280px] md:min-h-full">
+              <img
+                src="assets/massarat1.webp"
+                alt="Massarat Kang"
+                class="w-full h-full object-cover"
+              />
             </div>
             <div class="md:col-span-3 p-6 sm:p-10 space-y-4">
               <div>
                 <span class="text-purple-500 uppercase tracking-widest text-xs"
-                  >Co-Founder</span
+                  >Founder</span
                 >
                 <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
                   Massarat Kang
@@ -565,6 +571,7 @@
                   >Sales Strategy</span
                 >
               </div>
+
               <a
                 href="contact.html#coaching"
                 class="inline-block mt-2 px-5 py-2 border border-purple-800 text-purple-800 text-sm rounded-full hover:bg-purple-800 hover:text-white transition"
@@ -581,17 +588,13 @@
         >
           <div class="grid md:grid-cols-5">
             <div
-              class="md:col-span-2 bg-orange-100 flex items-center justify-center p-10 min-h-[220px] md:order-last"
+              class="md:col-span-2 min-h-[280px] md:min-h-full md:order-last"
             >
-              <div
-                class="w-36 h-36 sm:w-44 sm:h-44 lg:w-52 lg:h-52 rounded-full overflow-hidden shadow-md"
-              >
-                <img
-                  src="assets/divyaa.webp"
-                  alt="Divyaa R Sharma"
-                  class="w-full h-full object-cover"
-                />
-              </div>
+              <img
+                src="assets/divyaa1.webp"
+                alt="Divyaa R Sharma"
+                class="w-full h-full object-cover"
+              />
             </div>
             <div class="md:col-span-3 p-6 sm:p-10 space-y-4">
               <div>
@@ -655,6 +658,7 @@
                   >Communication</span
                 >
               </div>
+
               <a
                 href="contact.html#coaching"
                 class="inline-block mt-2 px-5 py-2 border border-purple-800 text-purple-800 text-sm rounded-full hover:bg-purple-800 hover:text-white transition"
@@ -670,18 +674,12 @@
           class="bg-white rounded-3xl overflow-hidden border border-orange-100 shadow-sm reveal"
         >
           <div class="grid md:grid-cols-5">
-            <div
-              class="md:col-span-2 bg-green-50 flex items-center justify-center p-10 min-h-[220px]"
-            >
-              <div
-                class="w-36 h-36 sm:w-44 sm:h-44 lg:w-52 lg:h-52 rounded-full overflow-hidden shadow-md"
-              >
-                <img
-                  src="assets/mamta.webp"
-                  alt="Dr. Mamta Barve"
-                  class="w-full h-full object-cover"
-                />
-              </div>
+            <div class="md:col-span-2 min-h-[280px] md:min-h-full">
+              <img
+                src="assets/mamta1.webp"
+                alt="Dr. Mamta Barve"
+                class="w-full h-full object-cover"
+              />
             </div>
             <div class="md:col-span-3 p-6 sm:p-10 space-y-4">
               <div>
@@ -741,6 +739,7 @@
                   >Bach Flower Remedies</span
                 >
               </div>
+
               <a
                 href="contact.html#coaching"
                 class="inline-block mt-2 px-5 py-2 border border-purple-800 text-purple-800 text-sm rounded-full hover:bg-purple-800 hover:text-white transition"
@@ -883,10 +882,10 @@
         </p>
         <div class="flex flex-wrap justify-center gap-3 pt-2">
           <a
-            href="services.html"
+            href="community.html"
             class="px-7 py-3 bg-orange-300 text-purple-900 font-bold rounded-full hover:bg-orange-200 transition text-sm sm:text-base"
           >
-            View Membership Tiers
+            Explore The Community
           </a>
           <a
             href="contact.html"
