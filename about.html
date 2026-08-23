@@ -11,6 +11,7 @@
       name="description"
       content="Meet Massarat Kang and Divyaa R Sharma — the founders behind The WOW Tribe. Learn about our mission to empower women entrepreneurs across India through business coaching and personality development."
     />
+
     <!-- Open Graph -->
     <meta
       property="og:title"
@@ -27,13 +28,12 @@
       content="https://wow.massaratkang.com/assets/og-image.jpg"
     />
     <link rel="canonical" href="https://wow.massaratkang.com/about.html" />
-    <link rel="stylesheet" href="assets/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Sora:wght@100..800&display=swap"
-      rel="stylesheet"
-    />
+    <style type="text/tailwindcss">
+      @theme {
+        --font-serif: "Libre Baskerville", serif;
+      }
+    </style>
+    <!-- Favicons -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -53,176 +53,112 @@
     />
     <link rel="icon" href="assets/favicon.ico" />
     <link rel="manifest" href="assets/site.webmanifest" />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        font-family: "Libre Baskerville", serif;
-        margin: 0;
-      }
 
-      /* NAV */
-      #navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 50;
-        transition:
-          background-color 0.3s,
-          box-shadow 0.3s;
-      }
-      #navbar.scrolled {
-        background: rgba(255, 247, 237, 0.96);
-        box-shadow: 0 2px 16px rgba(80, 0, 120, 0.08);
-        backdrop-filter: blur(8px);
-      }
-
-      #menu-toggle {
-        display: none;
-      }
-      #hamburger {
-        display: none;
-        cursor: pointer;
-        flex-direction: column;
-        gap: 5px;
-      }
-      #hamburger span {
-        display: block;
-        width: 24px;
-        height: 2px;
-        background: #581c87;
-        border-radius: 2px;
-        transition: all 0.3s;
-      }
-      #menu-toggle:checked ~ #nav-links {
-        display: flex;
-      }
-      #menu-toggle:checked ~ #hamburger span:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
-      }
-      #menu-toggle:checked ~ #hamburger span:nth-child(2) {
-        opacity: 0;
-      }
-      #menu-toggle:checked ~ #hamburger span:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
-      }
-
-      @media (max-width: 767px) {
-        #hamburger {
-          display: flex;
-        }
-        #nav-links {
-          display: none;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          flex-direction: column;
-          align-items: center;
-          gap: 0;
-          background: rgba(255, 247, 237, 0.98);
-          box-shadow: 0 8px 24px rgba(80, 0, 120, 0.12);
-          padding: 1rem 0 1.5rem;
-        }
-        #nav-links a {
-          padding: 0.75rem 2rem;
-          width: 100%;
-          text-align: center;
-        }
-        #nav-links .cta-btn {
-          margin: 0.5rem auto 0;
-        }
-      }
-
-      /* Fade-in on scroll */
-      .reveal {
-        opacity: 0;
-        transform: translateY(28px);
-        transition:
-          opacity 0.65s ease,
-          transform 0.65s ease;
-      }
-      .reveal.visible {
-        opacity: 1;
-        transform: none;
-      }
-
-      /* Timeline connector */
-      .timeline-line {
-        position: absolute;
-        left: 50%;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: linear-gradient(to bottom, #c4b5fd, #6d28d9, #c4b5fd);
-        transform: translateX(-50%);
-      }
-      @media (max-width: 767px) {
-        .timeline-line {
-          left: 20px;
-        }
-      }
-
-      /* Stat counter */
-      .stat-num {
-        font-variant-numeric: tabular-nums;
-      }
-      #hamburger span {
-        background: #ffffff; /* was #581c87 */
-      }
-      #navbar.scrolled #nav-links a:not(.cta-btn) {
-        color: #581c87;
-      }
-      #navbar.scrolled #nav-links a:not(.cta-btn):hover {
-        color: #7e22ce;
-      }
-      #navbar.scrolled #hamburger span {
-        background: #581c87;
-      }
-    </style>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
   </head>
-  <body class="bg-orange-50">
-    <!-- NAVBAR -->
-    <nav id="navbar" class="w-full">
+
+  <body class="bg-orange-50 font-serif m-0">
+    <!-- ══════════════ NAVBAR ══════════════ -->
+    <nav
+      id="navbar"
+      class="fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-300"
+    >
       <div
         class="w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20 md:h-24"
       >
         <a href="index.html" class="flex items-center gap-3 shrink-0">
           <img src="assets/logo.svg" class="h-24 w-auto" alt="The Wow Tribe" />
         </a>
-        <label id="hamburger" for="menu-toggle" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </label>
-        <input type="checkbox" id="menu-toggle" class="sr-only" />
+
+        <!-- Desktop links -->
         <div id="nav-links" class="hidden md:flex items-center gap-1 lg:gap-2">
           <a
             href="index.html"
+            data-nav-link
             class="px-3 py-2 text-sm text-white/90 hover:text-white transition font-medium"
             >Home</a
           >
           <a
             href="about.html"
+            data-nav-active
             class="px-3 py-2 text-sm text-white font-bold border-b-2 border-white"
             >About</a
           >
           <a
             href="community.html"
+            data-nav-link
             class="px-3 py-2 text-sm text-white/90 hover:text-white transition font-medium"
             >Community</a
           >
           <a
             href="contact.html"
-            class="cta-btn ml-3 px-5 py-2 bg-purple-800 text-white text-sm rounded-full hover:bg-white/30 transition font-medium shadow-sm"
+            class="cta-btn ml-3 px-5 py-2 bg-purple-800 text-white text-sm rounded-full hover:bg-purple-700 transition font-medium shadow-sm"
             >Contact</a
           >
         </div>
+
+        <!-- Hamburger (mobile only) -->
+        <button
+          id="hamburger-btn"
+          aria-label="Open menu"
+          class="flex md:hidden bg-transparent border-0 cursor-pointer flex-col gap-[5px] items-center justify-center p-1.5"
+        >
+          <span class="block w-6 h-0.5 bg-white rounded-full transition-colors"></span>
+          <span class="block w-6 h-0.5 bg-white rounded-full transition-colors"></span>
+          <span class="block w-6 h-0.5 bg-white rounded-full transition-colors"></span>
+        </button>
       </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- Drawer overlay -->
+    <div
+      id="drawer-overlay"
+      class="hidden fixed inset-0 bg-[rgba(30,0,60,0.55)] z-40 transition-opacity duration-300"
+    ></div>
+
+    <!-- Mobile drawer -->
+    <div
+      id="mobile-drawer"
+      aria-hidden="true"
+      class="fixed top-0 right-0 w-[72%] max-w-[280px] h-full bg-orange-50 z-50 translate-x-full transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] flex flex-col px-7 pt-6 pb-10 shadow-[-8px_0_32px_rgba(80,0,120,0.15)]"
+    >
+      <button
+        id="drawer-close"
+        aria-label="Close menu"
+        class="self-end bg-transparent border-0 cursor-pointer text-[22px] text-purple-900 px-1.5 py-1 leading-none mb-7"
+      >
+        ✕
+      </button>
+      <a
+        href="index.html"
+        class="block py-3.5 px-1 text-[15px] text-purple-950 font-medium no-underline border-b border-b-violet-100 font-serif"
+        >Home</a
+      >
+      <a
+        href="about.html"
+        class="block py-3.5 px-1 text-[15px] font-medium no-underline border-b border-b-violet-100 font-serif text-purple-700"
+        >About</a
+      >
+      <a
+        href="community.html"
+        class="block py-3.5 px-1 text-[15px] text-purple-950 font-medium no-underline border-b border-b-violet-100 font-serif"
+        >Community</a
+      >
+      <a
+        href="contact.html"
+        class="mt-6 bg-purple-800 hover:bg-purple-700 !text-white rounded-full text-center py-3.5 border-b-0 font-semibold font-serif no-underline"
+        >Contact</a
+      >
+    </div>
+
+    <!-- ══════════════ HERO ══════════════ -->
     <section
       class="relative min-h-[65vh] flex items-center pt-40 pb-32 px-4 sm:px-6 bg-gradient-to-b from-violet-950 via-violet-900 to-violet-950 overflow-hidden"
     >
@@ -232,7 +168,6 @@
         >
           Our Story
         </span>
-
         <h1
           class="text-4xl sm:text-6xl md:text-7xl leading-tight font-bold text-white"
         >
@@ -240,7 +175,6 @@
           <br class="hidden sm:block" />
           we <span class="text-orange-300 italic">wished existed.</span>
         </h1>
-
         <p
           class="text-base sm:text-lg md:text-xl text-violet-100/90 max-w-2xl mx-auto leading-relaxed"
         >
@@ -249,38 +183,55 @@
           leadership growth in one place.
         </p>
       </div>
-
-      <!-- Decorative Glow -->
+      <!-- Decorative glow -->
       <div
         class="absolute top-20 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-orange-400/10 blur-3xl rounded-full"
       ></div>
     </section>
 
-    <!-- STATS -->
+    <!-- ══════════════ STATS ══════════════ -->
     <section class="px-4 sm:px-6 -mt-12 relative z-20">
       <div
         class="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl border border-purple-100"
       >
-        <div
-          class="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-purple-100"
-        >
-          <div class="p-8 text-center">
-            <p class="text-4xl md:text-5xl font-bold text-violet-900">30+</p>
-            <p class="text-sm uppercase tracking-widest text-gray-500 mt-2">
+        <div class="grid grid-cols-3">
+          <div
+            class="p-6 sm:p-8 max-[480px]:py-5 max-[480px]:px-2 text-center border-r border-violet-100"
+          >
+            <p
+              class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl max-[480px]:text-[1.75rem] font-bold text-violet-900"
+            >
+              30+
+            </p>
+            <p
+              class="text-xs md:text-[0.65rem] lg:text-xs max-[480px]:text-[0.6rem] max-[480px]:tracking-[0.08em] uppercase tracking-widest text-gray-500 mt-2"
+            >
               Years of Experience
             </p>
           </div>
-
-          <div class="p-8 text-center">
-            <p class="text-4xl md:text-5xl font-bold text-violet-900">98%</p>
-            <p class="text-sm uppercase tracking-widest text-gray-500 mt-2">
+          <div
+            class="p-6 sm:p-8 max-[480px]:py-5 max-[480px]:px-2 text-center border-r border-violet-100"
+          >
+            <p
+              class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl max-[480px]:text-[1.75rem] font-bold text-violet-900"
+            >
+              98%
+            </p>
+            <p
+              class="text-xs md:text-[0.65rem] lg:text-xs max-[480px]:text-[0.6rem] max-[480px]:tracking-[0.08em] uppercase tracking-widest text-gray-500 mt-2"
+            >
               Member Satisfaction
             </p>
           </div>
-
-          <div class="p-8 text-center">
-            <p class="text-4xl md:text-5xl font-bold text-violet-900">40+</p>
-            <p class="text-sm uppercase tracking-widest text-gray-500 mt-2">
+          <div class="p-6 sm:p-8 max-[480px]:py-5 max-[480px]:px-2 text-center">
+            <p
+              class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl max-[480px]:text-[1.75rem] font-bold text-violet-900"
+            >
+              40+
+            </p>
+            <p
+              class="text-xs md:text-[0.65rem] lg:text-xs max-[480px]:text-[0.6rem] max-[480px]:tracking-[0.08em] uppercase tracking-widest text-gray-500 mt-2"
+            >
               Businesses Supported
             </p>
           </div>
@@ -288,52 +239,62 @@
       </div>
     </section>
 
-    <!-- THE REAL PROBLEM -->
-    <section class="py-16 sm:py-20 px-4 sm:px-4 bg-orange-50">
+    <!-- ══════════════ MISSION ══════════════ -->
+    <section class="py-16 sm:py-20 px-4 sm:px-6 bg-orange-50">
       <div class="max-w-6xl mx-auto reveal">
         <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-          <!-- Left Content -->
+          <!-- Left: copy -->
           <div class="space-y-5">
             <span
               class="inline-block uppercase tracking-widest text-xs text-purple-500 mb-1"
+              >Our Mission</span
             >
-              Our Mission
-            </span>
-
             <h2
               class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight"
             >
               Business strategy meets
               <span class="text-purple-800 italic">inner strength</span>
             </h2>
-
             <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
               Most business communities focus only on tactics. Most coaching
               focuses only on mindset. The WOW Tribe is built on the belief that
               these two are inseparable — that the woman running the business is
               as important as the business itself.
             </p>
-
             <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
               We create environments where ambitious women can build sharper
               strategies, show up with more confidence, and find the sisterhood
               that makes the journey sustainable.
             </p>
-
             <a
               href="community.html"
               class="inline-flex items-center bg-purple-800 hover:bg-purple-900 text-white px-6 py-3 rounded-full text-sm font-medium transition"
+              >Explore The Community</a
             >
-              Explore The Community
-            </a>
           </div>
 
-          <!-- Right Content -->
+          <!-- Right: mission cards -->
           <div class="space-y-4">
             <div
-              class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm flex gap-4"
+              class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm flex gap-4 items-start"
             >
-              <div class="text-2xl">🎯</div>
+              <div
+                class="flex items-center justify-center w-11 h-11 rounded-xl bg-purple-100 shrink-0"
+              >
+                <svg
+                  class="w-[22px] h-[22px] stroke-violet-600"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="12" r="6" />
+                  <circle cx="12" cy="12" r="2" />
+                </svg>
+              </div>
               <div>
                 <h4 class="font-bold text-purple-900 text-sm mb-1">
                   Built for India's Women Entrepreneurs
@@ -346,9 +307,26 @@
             </div>
 
             <div
-              class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm flex gap-4"
+              class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm flex gap-4 items-start"
             >
-              <div class="text-2xl">🤝</div>
+              <div
+                class="flex items-center justify-center w-11 h-11 rounded-xl bg-purple-100 shrink-0"
+              >
+                <svg
+                  class="w-[22px] h-[22px] stroke-violet-600"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
               <div>
                 <h4 class="font-bold text-purple-900 text-sm mb-1">
                   Community That Actually Connects
@@ -362,9 +340,26 @@
             </div>
 
             <div
-              class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm flex gap-4"
+              class="bg-white rounded-2xl p-5 border border-orange-100 shadow-sm flex gap-4 items-start"
             >
-              <div class="text-2xl">📈</div>
+              <div
+                class="flex items-center justify-center w-11 h-11 rounded-xl bg-purple-100 shrink-0"
+              >
+                <svg
+                  class="w-[22px] h-[22px] stroke-violet-600"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="18" y1="20" x2="18" y2="10" />
+                  <line x1="12" y1="20" x2="12" y2="4" />
+                  <line x1="6" y1="20" x2="6" y2="14" />
+                  <line x1="2" y1="20" x2="22" y2="20" />
+                </svg>
+              </div>
               <div>
                 <h4 class="font-bold text-purple-900 text-sm mb-1">
                   Practical, Applicable, Measurable
@@ -380,15 +375,14 @@
       </div>
     </section>
 
-    <!-- WHY THE WOW TRIBE -->
+    <!-- ══════════════ PRINCIPLES ══════════════ -->
     <section class="py-16 sm:py-20 px-4 sm:px-6 bg-violet-950 text-white">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-10 sm:mb-14 reveal">
           <span
             class="text-orange-300 uppercase tracking-widest text-xs sm:text-sm mb-2 block"
+            >What Guides Us</span
           >
-            What Guides Us
-          </span>
           <h2 class="text-3xl sm:text-4xl font-bold">
             The WOW <span class="italic text-orange-300">Principles</span>
           </h2>
@@ -408,7 +402,6 @@
               uselessness.
             </p>
           </div>
-
           <div
             class="p-8 border border-purple-700/10 hover:bg-purple-800/50 transition reveal"
           >
@@ -421,7 +414,6 @@
               Both matter. Neither alone is enough.
             </p>
           </div>
-
           <div
             class="p-8 border border-purple-700/10 hover:bg-purple-800/50 transition reveal"
           >
@@ -434,7 +426,6 @@
               networking event, it's a genuine ecosystem of mutual growth.
             </p>
           </div>
-
           <div
             class="p-8 border border-purple-700/10 hover:bg-purple-800/50 transition reveal"
           >
@@ -447,7 +438,6 @@
               measure success not in applause but in outcomes.
             </p>
           </div>
-
           <div
             class="p-8 border border-purple-700/10 hover:bg-purple-800/50 transition reveal"
           >
@@ -458,7 +448,6 @@
               of building a business as a woman in India today.
             </p>
           </div>
-
           <div
             class="p-8 border border-purple-700/10 hover:bg-purple-800/50 transition reveal"
           >
@@ -477,14 +466,13 @@
           <a
             href="community.html"
             class="inline-block px-7 py-3 bg-orange-300 text-purple-900 font-bold rounded-full hover:bg-orange-200 transition text-sm sm:text-base"
+            >Explore Our Community</a
           >
-            Explore Our Community
-          </a>
         </div>
       </div>
     </section>
 
-    <!-- MEET THE TEAM -->
+    <!-- ══════════════ FOUNDERS ══════════════ -->
     <section class="py-16 sm:py-20 px-4 sm:px-6 bg-orange-50">
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-10 sm:mb-14 reveal">
@@ -502,12 +490,14 @@
         <div
           class="bg-white rounded-3xl overflow-hidden border border-orange-100 shadow-sm mb-6 reveal"
         >
-          <div class="grid md:grid-cols-5">
-            <div class="md:col-span-2 min-h-[280px] md:min-h-full">
+          <div class="grid grid-cols-1 md:grid-cols-5">
+            <div
+              class="md:col-span-2 min-h-[280px] max-[767px]:min-h-[260px] max-[767px]:order-first"
+            >
               <img
                 src="assets/massarat1.webp"
                 alt="Massarat Kang"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover min-h-[inherit]"
               />
             </div>
             <div class="md:col-span-3 p-6 sm:p-10 space-y-4">
@@ -571,13 +561,11 @@
                   >Sales Strategy</span
                 >
               </div>
-
               <a
                 href="contact.html#coaching"
                 class="inline-block mt-2 px-5 py-2 border border-purple-800 text-purple-800 text-sm rounded-full hover:bg-purple-800 hover:text-white transition"
+                >Book a Session with Massarat</a
               >
-                Book a Session with Massarat
-              </a>
             </div>
           </div>
         </div>
@@ -586,14 +574,14 @@
         <div
           class="bg-white rounded-3xl overflow-hidden border border-orange-100 shadow-sm mb-6 reveal"
         >
-          <div class="grid md:grid-cols-5">
+          <div class="grid grid-cols-1 md:grid-cols-5">
             <div
-              class="md:col-span-2 min-h-[280px] md:min-h-full md:order-last"
+              class="md:col-span-2 md:order-last min-h-[280px] max-[767px]:min-h-[260px] max-[767px]:order-first"
             >
               <img
                 src="assets/divyaa1.webp"
                 alt="Divyaa R Sharma"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover min-h-[inherit]"
               />
             </div>
             <div class="md:col-span-3 p-6 sm:p-10 space-y-4">
@@ -658,13 +646,11 @@
                   >Communication</span
                 >
               </div>
-
               <a
                 href="contact.html#coaching"
                 class="inline-block mt-2 px-5 py-2 border border-purple-800 text-purple-800 text-sm rounded-full hover:bg-purple-800 hover:text-white transition"
+                >Book a Session with Divyaa</a
               >
-                Book a Session with Divyaa
-              </a>
             </div>
           </div>
         </div>
@@ -673,12 +659,14 @@
         <div
           class="bg-white rounded-3xl overflow-hidden border border-orange-100 shadow-sm reveal"
         >
-          <div class="grid md:grid-cols-5">
-            <div class="md:col-span-2 min-h-[280px] md:min-h-full">
+          <div class="grid grid-cols-1 md:grid-cols-5">
+            <div
+              class="md:col-span-2 min-h-[280px] max-[767px]:min-h-[260px] max-[767px]:order-first"
+            >
               <img
                 src="assets/mamta1.webp"
                 alt="Dr. Mamta Barve"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover min-h-[inherit]"
               />
             </div>
             <div class="md:col-span-3 p-6 sm:p-10 space-y-4">
@@ -739,20 +727,18 @@
                   >Bach Flower Remedies</span
                 >
               </div>
-
               <a
                 href="contact.html#coaching"
                 class="inline-block mt-2 px-5 py-2 border border-purple-800 text-purple-800 text-sm rounded-full hover:bg-purple-800 hover:text-white transition"
+                >Book a Session with Dr. Mamta</a
               >
-                Book a Session with Dr. Mamta
-              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- VISION & MISSION -->
+    <!-- ══════════════ VISION & MISSION ══════════════ -->
     <section class="py-16 sm:py-20 px-4 sm:px-6 bg-violet-950 text-white">
       <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 sm:gap-10">
         <div
@@ -796,7 +782,7 @@
       </div>
     </section>
 
-    <!-- OUR JOURNEY (Timeline) -->
+    <!-- ══════════════ TIMELINE ══════════════ -->
     <section class="py-16 sm:py-20 px-4 sm:px-6 bg-orange-50">
       <div class="max-w-3xl mx-auto">
         <div class="text-center mb-10 sm:mb-14 reveal">
@@ -810,9 +796,10 @@
           </h2>
         </div>
         <div class="relative pl-12 md:pl-0">
-          <div class="timeline-line hidden md:block"></div>
+          <div
+            class="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-gradient-to-b from-violet-300 via-violet-700 to-violet-300"
+          ></div>
           <div class="space-y-10 md:space-y-0">
-            <!-- 2020 -->
             <div class="md:grid md:grid-cols-2 md:gap-10 md:mb-12 reveal">
               <div class="md:text-right md:pr-10">
                 <span class="text-purple-500 uppercase tracking-widest text-xs"
@@ -828,7 +815,6 @@
               <div class="hidden md:block"></div>
             </div>
 
-            <!-- Growth -->
             <div class="md:grid md:grid-cols-2 md:gap-10 md:mb-12 reveal">
               <div class="hidden md:block"></div>
               <div class="md:pl-10">
@@ -846,7 +832,6 @@
               </div>
             </div>
 
-            <!-- Today -->
             <div class="md:grid md:grid-cols-2 md:gap-10 reveal">
               <div class="md:text-right md:pr-10">
                 <span class="text-purple-500 uppercase tracking-widest text-xs"
@@ -868,7 +853,7 @@
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- ══════════════ CTA BAND ══════════════ -->
     <section
       class="py-16 sm:py-20 px-4 sm:px-6 bg-violet-950 text-white text-center"
     >
@@ -884,20 +869,18 @@
           <a
             href="community.html"
             class="px-7 py-3 bg-orange-300 text-purple-900 font-bold rounded-full hover:bg-orange-200 transition text-sm sm:text-base"
+            >Explore The Community</a
           >
-            Explore The Community
-          </a>
           <a
             href="contact.html"
             class="px-7 py-3 border-2 border-purple-400 text-white rounded-full hover:bg-purple-800 transition text-sm sm:text-base"
+            >Get In Touch</a
           >
-            Get In Touch
-          </a>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- ══════════════ FOOTER ══════════════ -->
     <footer
       class="bg-violet-950 border-t border-purple-800 py-6 px-4 text-center"
     >
@@ -906,27 +889,12 @@
       </p>
     </footer>
 
+    <!-- ══════════════ SCRIPTS ══════════════ -->
+    <script src="assets/site.js"></script>
     <script>
-      // Navbar scroll
-      const navbar = document.getElementById("navbar");
-      window.addEventListener("scroll", () => {
-        navbar.classList.toggle("scrolled", window.scrollY > 30);
-      });
-
-      // Reveal on scroll
-      const revealEls = document.querySelectorAll(".reveal");
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("visible");
-              observer.unobserve(e.target);
-            }
-          });
-        },
-        { threshold: 0.12 },
-      );
-      revealEls.forEach((el) => observer.observe(el));
+      initDrawer();
+      initNavbarScroll("dark-hero");
+      initScrollReveal({ threshold: 0.12 });
     </script>
   </body>
 </html>

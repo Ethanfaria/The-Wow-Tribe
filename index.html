@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- SEO -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="Join The Wow Tribe — India's most energising community for women entrepreneurs. Business coaching, sisterhood, and unstoppable growth."
@@ -24,15 +24,10 @@
       property="og:image"
       content="https://wow.massaratkang.com/assets/og-image.jpg"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>The Wow Tribe | Women Entrepreneurs Community India</title>
-    <link rel="stylesheet" href="assets/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
+
+    <!-- Favicons -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -52,155 +47,41 @@
     />
     <link rel="icon" href="assets/favicon.ico" />
     <link rel="manifest" href="assets/site.webmanifest" />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        font-family: "Libre Baskerville", serif;
-        margin: 0;
-      }
 
-      /* ── NAV ── */
-      #navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 50;
-        transition:
-          background-color 0.3s,
-          box-shadow 0.3s;
-      }
-      #navbar.scrolled {
-        background: rgba(255, 247, 237, 0.96);
-        box-shadow: 0 2px 16px rgba(80, 0, 120, 0.08);
-        backdrop-filter: blur(8px);
-      }
-
-      /* hamburger */
-      #menu-toggle {
-        display: none;
-      }
-      #hamburger {
-        display: none;
-        cursor: pointer;
-        flex-direction: column;
-        gap: 5px;
-      }
-      #hamburger span {
-        display: block;
-        width: 24px;
-        height: 2px;
-        background: #581c87;
-        border-radius: 2px;
-        transition: all 0.3s;
-      }
-      #menu-toggle:checked ~ #nav-links {
-        display: flex;
-      }
-      #menu-toggle:checked ~ #hamburger span:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
-      }
-      #menu-toggle:checked ~ #hamburger span:nth-child(2) {
-        opacity: 0;
-      }
-      #menu-toggle:checked ~ #hamburger span:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
-      }
-
-      @media (max-width: 767px) {
-        #hamburger {
-          display: flex;
-        }
-        #nav-links {
-          display: none;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          flex-direction: column;
-          align-items: center;
-          gap: 0;
-          background: rgba(255, 247, 237, 0.98);
-          box-shadow: 0 8px 24px rgba(80, 0, 120, 0.12);
-          padding: 1rem 0 1.5rem;
-        }
-        #nav-links a {
-          padding: 0.75rem 2rem;
-          width: 100%;
-          text-align: center;
-        }
-        #nav-links .cta-btn {
-          margin: 0.5rem auto 0;
-        }
-      }
-
-      /* ── CAROUSEL ── */
-      .carousel-wrapper {
-        overflow: hidden;
-        width: 100%;
-      }
-      .carousel-track {
-        display: flex;
-        will-change: transform;
-        width: 100%;
-      }
-      .carousel-slide {
-        width: 100%;
-        flex: 0 0 100%;
-        padding: 0 1rem;
-      }
-
-      /* dots */
-      .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: #c4b5fd;
-        border: none;
-        cursor: pointer;
-        transition:
-          background-color 0.2s,
-          transform 0.2s;
-      }
-      .dot.active {
-        background: #6d28d9;
-        transform: scale(1.3);
-      }
-
-      /* line clamp */
-      .line-clamp-5 {
-        display: -webkit-box;
-        -webkit-line-clamp: 5;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+    <style type="text/tailwindcss">
+      @theme {
+        --font-serif: "Libre Baskerville", serif;
       }
     </style>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/style.css" />
   </head>
 
-  <body class="bg-orange-50">
+  <body class="bg-orange-50 font-serif m-0">
     <!-- ══════════════ NAVBAR ══════════════ -->
-    <nav id="navbar" class="w-full">
+    <nav
+      id="navbar"
+      class="fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-300"
+    >
       <div
         class="w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20 md:h-24"
       >
-        <!-- Logo -->
-        <a href="#" class="flex items-center gap-3 shrink-0">
+        <a href="index.html" class="flex items-center gap-3 shrink-0">
           <img src="assets/logo.svg" class="h-24 w-auto" alt="The Wow Tribe" />
         </a>
 
-        <!-- Hamburger (mobile) -->
-        <label id="hamburger" for="menu-toggle" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </label>
-        <input type="checkbox" id="menu-toggle" class="sr-only" />
-
-        <!-- Nav Links -->
+        <!-- Desktop links -->
         <div id="nav-links" class="hidden md:flex items-center gap-1 lg:gap-2">
           <a
-            href="#hero"
-            class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium"
+            href="index.html"
+            class="px-3 py-2 text-sm text-purple-800 font-bold border-b-2 border-purple-800"
             >Home</a
           >
           <a
@@ -209,9 +90,9 @@
             >About</a
           >
           <a
-            href="services.html"
+            href="community.html"
             class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium"
-            >Services</a
+            >Community</a
           >
           <a
             href="contact.html"
@@ -219,8 +100,60 @@
             >Contact</a
           >
         </div>
+
+        <!-- Hamburger (mobile only) -->
+        <button
+          id="hamburger-btn"
+          aria-label="Open menu"
+          class="flex md:hidden bg-transparent border-0 cursor-pointer flex-col gap-[5px] items-center justify-center p-1.5"
+        >
+          <span class="block w-6 h-0.5 bg-purple-900 rounded-full transition-colors"></span>
+          <span class="block w-6 h-0.5 bg-purple-900 rounded-full transition-colors"></span>
+          <span class="block w-6 h-0.5 bg-purple-900 rounded-full transition-colors"></span>
+        </button>
       </div>
     </nav>
+
+    <!-- Drawer overlay -->
+    <div
+      id="drawer-overlay"
+      class="hidden fixed inset-0 bg-[rgba(30,0,60,0.55)] z-40 transition-opacity duration-300"
+    ></div>
+
+    <!-- Mobile drawer -->
+    <div
+      id="mobile-drawer"
+      aria-hidden="true"
+      class="fixed top-0 right-0 w-[72%] max-w-[280px] h-full bg-orange-50 z-50 translate-x-full transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] flex flex-col px-7 pt-6 pb-10 shadow-[-8px_0_32px_rgba(80,0,120,0.15)]"
+    >
+      <button
+        id="drawer-close"
+        aria-label="Close menu"
+        class="self-end bg-transparent border-0 cursor-pointer text-[22px] text-purple-900 px-1.5 py-1 leading-none mb-7"
+      >
+        ✕
+      </button>
+      <a
+        href="index.html"
+        class="block py-3.5 px-1 text-[15px] font-medium no-underline border-b border-b-violet-100 font-serif text-purple-700"
+        >Home</a
+      >
+      <a
+        href="about.html"
+        class="block py-3.5 px-1 text-[15px] text-purple-950 font-medium no-underline border-b border-b-violet-100 font-serif"
+        >About</a
+      >
+      <a
+        href="community.html"
+        class="block py-3.5 px-1 text-[15px] text-purple-950 font-medium no-underline border-b border-b-violet-100 font-serif"
+        >Community</a
+      >
+      <a
+        href="contact.html"
+        class="mt-6 bg-purple-800 hover:bg-purple-700 !text-white rounded-full text-center py-3.5 border-b-0 font-semibold font-serif no-underline"
+        >Contact</a
+      >
+    </div>
 
     <!-- ══════════════ HERO ══════════════ -->
     <section
@@ -236,51 +169,66 @@
         <h1
           class="text-3xl sm:text-5xl md:text-6xl leading-tight font-bold text-gray-900"
         >
-          You Were Built to
-          <span class="text-purple-800 italic">Lead.</span
+          You Were Built to <span class="text-purple-800 italic">Lead.</span
           ><br class="hidden sm:block" />
           Your <span class="text-purple-800 italic">Tribe</span> is Waiting.
         </h1>
         <p
           class="text-sm sm:text-base md:text-lg text-gray-600 max-w-xl mx-auto leading-relaxed"
         >
-          Join India's most energising community for women entrepreneurs - where
+          Join India's most energising community for women entrepreneurs — where
           business coaching, sisterhood, and unstoppable ambition come together.
         </p>
         <div class="flex flex-wrap justify-center gap-3 pt-2">
           <a
             href="contact.html"
             class="px-6 py-3 bg-purple-800 text-white rounded-full hover:bg-purple-700 transition text-sm sm:text-base font-medium shadow-md"
+            >Find Your Tribe</a
           >
-            Find Your Tribe
-          </a>
           <a
             href="about.html"
             class="px-6 py-3 bg-transparent border-2 border-purple-800 text-purple-800 rounded-full hover:bg-purple-800 hover:text-white transition text-sm sm:text-base font-medium"
+            >Learn More</a
           >
-            Learn More
-          </a>
         </div>
-        <div
-          class="flex justify-center items-center gap-8 sm:gap-12 pt-6 flex-wrap"
-        >
+
+        <!-- Mini stats (always horizontal) -->
+        <div class="flex justify-center items-center gap-8 max-[480px]:gap-4 flex-nowrap pt-6">
           <div class="text-center">
-            <p class="text-2xl sm:text-3xl font-bold text-purple-800">30+</p>
-            <p class="text-xs text-gray-500 uppercase tracking-wide mt-1">
+            <p
+              class="text-2xl sm:text-3xl max-[480px]:text-[1.35rem] font-bold text-purple-800"
+            >
+              30+
+            </p>
+            <p
+              class="text-xs max-[480px]:text-[0.6rem] text-gray-500 uppercase tracking-wide mt-1"
+            >
               Years Experience
             </p>
           </div>
-          <div class="w-px h-10 bg-gray-300 hidden sm:block"></div>
+          <div class="w-px h-10 max-[480px]:h-8 bg-gray-300 shrink-0"></div>
           <div class="text-center">
-            <p class="text-2xl sm:text-3xl font-bold text-purple-800">40+</p>
-            <p class="text-xs text-gray-500 uppercase tracking-wide mt-1">
+            <p
+              class="text-2xl sm:text-3xl max-[480px]:text-[1.35rem] font-bold text-purple-800"
+            >
+              40+
+            </p>
+            <p
+              class="text-xs max-[480px]:text-[0.6rem] text-gray-500 uppercase tracking-wide mt-1"
+            >
               Locations Scaled
             </p>
           </div>
-          <div class="w-px h-10 bg-gray-300 hidden sm:block"></div>
+          <div class="w-px h-10 max-[480px]:h-8 bg-gray-300 shrink-0"></div>
           <div class="text-center">
-            <p class="text-2xl sm:text-3xl font-bold text-purple-800">100%</p>
-            <p class="text-xs text-gray-500 uppercase tracking-wide mt-1">
+            <p
+              class="text-2xl sm:text-3xl max-[480px]:text-[1.35rem] font-bold text-purple-800"
+            >
+              100%
+            </p>
+            <p
+              class="text-xs max-[480px]:text-[0.6rem] text-gray-500 uppercase tracking-wide mt-1"
+            >
               Women-led
             </p>
           </div>
@@ -294,14 +242,16 @@
       class="py-16 sm:py-20 px-4 sm:px-6 bg-violet-950 text-white"
     >
       <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-10 sm:mb-14">
+        <div class="text-center mb-10 sm:mb-14 reveal">
           <p
             class="text-purple-300 uppercase tracking-widest text-xs sm:text-sm mb-2"
           >
             What We Offer
           </p>
+          <h2 class="text-3xl sm:text-4xl font-bold">Three pillars.</h2>
           <h2 class="text-3xl sm:text-4xl font-bold">
-            Your <span class="italic text-orange-300">Journey</span> Starts Here
+            One
+            <span class="italic text-orange-300">transformative</span> Journey
           </h2>
           <p
             class="mt-4 text-purple-200 max-w-xl mx-auto text-sm sm:text-base leading-relaxed"
@@ -314,7 +264,7 @@
         <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
           <!-- Card 1 -->
           <div
-            class="bg-purple-800/50 rounded-3xl p-6 sm:p-8 border border-purple-700 hover:bg-purple-800 transition"
+            class="bg-purple-800/50 rounded-3xl p-6 sm:p-8 border border-purple-700 hover:bg-purple-800 transition reveal"
           >
             <div
               class="w-12 h-12 bg-orange-300 rounded-2xl flex items-center justify-center mb-5"
@@ -342,9 +292,10 @@
               wants you to win.
             </p>
           </div>
+
           <!-- Card 2 -->
           <div
-            class="bg-purple-800/50 rounded-3xl p-6 sm:p-8 border border-purple-700 hover:bg-purple-800 transition"
+            class="bg-purple-800/50 rounded-3xl p-6 sm:p-8 border border-purple-700 hover:bg-purple-800 transition reveal"
           >
             <div
               class="w-12 h-12 bg-orange-300 rounded-2xl flex items-center justify-center mb-5"
@@ -372,9 +323,10 @@
               Indian market.
             </p>
           </div>
+
           <!-- Card 3 -->
           <div
-            class="bg-purple-800/50 rounded-3xl p-6 sm:p-8 border border-purple-700 hover:bg-purple-800 transition sm:col-span-2 md:col-span-1"
+            class="bg-purple-800/50 rounded-3xl p-6 sm:p-8 border border-purple-700 hover:bg-purple-800 transition sm:col-span-2 md:col-span-1 reveal"
           >
             <div
               class="w-12 h-12 bg-orange-300 rounded-2xl flex items-center justify-center mb-5"
@@ -402,38 +354,115 @@
           </div>
         </div>
 
-        <div class="text-center mt-8 sm:mt-10">
+        <div class="text-center mt-8 sm:mt-10 reveal">
           <a
-            href="services.html"
+            href="community.html"
             class="inline-block px-7 sm:px-8 py-3 bg-orange-300 text-purple-900 font-bold rounded-full hover:bg-orange-200 transition text-sm sm:text-base"
+            >Explore The Community</a
           >
-            Explore All Services
-          </a>
         </div>
       </div>
     </section>
 
-    <!-- ══════════════ COURSES ══════════════ -->
-    <section id="courses" class="py-16 sm:py-20 px-4 sm:px-6 bg-orange-50">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-10 sm:mb-14">
-          <p
-            class="text-purple-500 uppercase tracking-widest text-xs sm:text-sm mb-2"
+    <!-- ══════════════ FOUNDERS ══════════════ -->
+    <section
+      class="grid grid-cols-1 md:grid-cols-2"
+      aria-labelledby="founders-h"
+    >
+      <!-- Image panel -->
+      <div
+        class="relative flex items-center justify-center min-h-[280px] md:min-h-[420px] p-8 sm:p-12 md:p-16 overflow-hidden"
+      >
+        <img
+          src="assets/founders.webp"
+          alt="Founders"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black/40"></div>
+        <!-- Floating stat card -->
+        <div
+          class="relative z-10 bg-white/10 backdrop-blur-sm border border-white/20 px-8 py-7 sm:px-10 sm:py-9 max-w-xs sm:max-w-80"
+        >
+          <div
+            class="text-5xl sm:text-[4rem] font-bold text-yellow-300 leading-none mb-2"
           >
-            Our Courses
-          </p>
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">
-            Learn & <span class="text-purple-800 italic">Grow</span>
-          </h2>
+            3
+          </div>
+          <div class="text-xs text-white/70 tracking-[0.08em] uppercase">
+            Expert founders
+            <strong
+              class="text-white font-normal block text-sm sm:text-[0.9rem] mt-1.5 normal-case tracking-normal"
+            >
+              Strategy · Psychology · Healing
+            </strong>
+          </div>
         </div>
-        <div class="max-w-xs mx-auto" id="courses-grid"></div>
+      </div>
+
+      <!-- Content panel -->
+      <div
+        class="bg-[#fff3e8] px-6 sm:px-[6%] py-12 sm:py-20 flex flex-col justify-center reveal"
+      >
+        <span
+          class="inline-block uppercase tracking-widest text-xs text-purple-500 mb-3"
+          >About the Founders</span
+        >
+        <h2
+          class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight"
+          id="founders-h"
+        >
+          Three experts.<br />One
+          <span class="text-purple-800 italic">powerful</span> community.
+        </h2>
+        <p
+          class="text-gray-600 text-sm sm:text-base leading-relaxed mt-4 max-w-lg"
+        >
+          Massarat Kang brings strategic business depth. Divyaa R Sharma brings
+          psychological insight. Dr. Mamta Barve brings healing and inner
+          renewal. Together they built a programme that works on all three
+          dimensions — because real transformation requires all of them.
+        </p>
+        <ul class="flex flex-col gap-3.5 my-5 mb-8">
+          <li
+            class="flex items-start gap-3 text-sm text-gray-500 leading-relaxed"
+          >
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-violet-600 shrink-0 mt-[7px]"
+            ></span>
+            Massarat Kang — 30+ years experience, 40+ businesses scaled across
+            India
+          </li>
+          <li
+            class="flex items-start gap-3 text-sm text-gray-500 leading-relaxed"
+          >
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-violet-600 shrink-0 mt-[7px]"
+            ></span>
+            Divyaa R Sharma — Psychology major, personality development
+            specialist
+          </li>
+          <li
+            class="flex items-start gap-3 text-sm text-gray-500 leading-relaxed"
+          >
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-violet-600 shrink-0 mt-[7px]"
+            ></span>
+            Dr. Mamta Barve — Ayurveda, energy healing &amp; shamanic
+            practitioner
+          </li>
+        </ul>
+        <a
+          href="about.html"
+          class="inline-flex items-center px-6 py-3 border border-purple-800 text-purple-800 text-sm rounded-full hover:bg-purple-800 hover:text-white transition font-medium w-fit"
+          >Meet the Founders</a
+        >
       </div>
     </section>
 
     <!-- ══════════════ TESTIMONIALS ══════════════ -->
     <section id="testimonials" class="py-16 sm:py-20 px-4 sm:px-6 bg-white">
       <div class="max-w-3xl mx-auto">
-        <div class="text-center mb-10 sm:mb-14">
+        <div class="text-center mb-10 sm:mb-14 reveal">
           <p
             class="text-purple-500 uppercase tracking-widest text-xs sm:text-sm mb-2"
           >
@@ -445,15 +474,14 @@
         </div>
 
         <!-- Carousel -->
-        <div class="carousel-wrapper" id="carousel">
+        <div class="overflow-hidden w-full" id="carousel">
           <div
-            class="carousel-track"
+            class="flex will-change-transform w-full"
             id="track"
             style="transform: translateX(0)"
           ></div>
         </div>
 
-        <!-- Controls -->
         <div
           class="flex items-center justify-center gap-5 sm:gap-6 mt-8 sm:mt-10"
         >
@@ -476,32 +504,32 @@
       </div>
     </section>
 
-    <!-- ══════════════ CONTACT (stub) ══════════════ -->
-    <section
-      id="contact"
-      class="py-16 sm:py-20 px-4 sm:px-6 bg-violet-950 text-white"
+    <!-- ══════════════ CTA BAND ══════════════ -->
+    <div
+      class="bg-[#2e1065] py-16 px-6 sm:px-8 flex items-center justify-between gap-8 flex-wrap max-[767px]:flex-col max-[767px]:text-center"
     >
-      <div class="max-w-xl mx-auto text-center space-y-5">
-        <p class="text-purple-300 uppercase tracking-widest text-xs sm:text-sm">
-          Get In Touch
-        </p>
-        <h2 class="text-3xl sm:text-4xl font-bold">
-          Ready to Join Your <span class="italic text-orange-300">Tribe?</span>
+      <div class="max-w-lg">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">
+          Ready to stop doing it
+          <span class="italic text-orange-300">alone?</span>
         </h2>
-        <p class="text-purple-200 text-sm sm:text-base leading-relaxed">
-          Reach out to us and take the first step towards building the business
-          - and life - you deserve.
+        <p class="text-purple-200 text-sm sm:text-base mt-3 leading-relaxed">
+          Join 200+ women entrepreneurs who chose the WOW Tribe.
         </p>
-        <div class="flex justify-center pt-2">
-          <a
-            href="contact.html"
-            class="inline-block px-8 py-3.5 bg-orange-300 text-purple-900 font-bold rounded-full hover:bg-orange-200 transition text-sm sm:text-base shadow-md"
-          >
-            Join Now
-          </a>
-        </div>
       </div>
-    </section>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a
+          href="contact.html#join"
+          class="px-7 py-3 bg-orange-300 text-purple-900 font-bold rounded-full hover:bg-orange-200 transition text-sm sm:text-base"
+          >Join the Tribe</a
+        >
+        <a
+          href="community.html"
+          class="px-7 py-3 border-2 border-purple-400 text-white rounded-full hover:bg-purple-800 transition text-sm sm:text-base"
+          >Explore The Community</a
+        >
+      </div>
+    </div>
 
     <!-- ══════════════ FOOTER ══════════════ -->
     <footer
@@ -513,45 +541,13 @@
     </footer>
 
     <!-- ══════════════ SCRIPTS ══════════════ -->
+    <script src="assets/site.js"></script>
     <script>
-      // ── Navbar scroll effect ──
-      const navbar = document.getElementById("navbar");
-      window.addEventListener("scroll", () => {
-        navbar.classList.toggle("scrolled", window.scrollY > 30);
-      });
+      initDrawer();
+      initNavbarScroll("light-static");
+      initScrollReveal({ threshold: 0.1 });
 
-      // ── Courses ──
-      const courses = [
-        {
-          title: "A 3-Hour Workshop for Women Founders",
-          price: "₹99",
-          tag: "Advanced",
-          image: "assets/poster.png",
-          link: "https://tagmango.app/0a752d51c5 ",
-        },
-      ];
-
-      const grid = document.getElementById("courses-grid");
-      grid.innerHTML = courses
-        .map(
-          (c) => `
-        <a href="${c.link}" target="_blank" class="bg-white rounded-3xl overflow-hidden border border-orange-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col group">
-          <div class="overflow-hidden">
-            <img src="${c.image}" alt="${c.title}" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" />
-          </div>
-          <div class="p-5 sm:p-6 space-y-1.5 text-center flex flex-col items-center">
-            <p class="text-purple-500 text-xs uppercase tracking-widest font-bold">${c.tag}</p>
-            <p class="font-bold text-gray-900 text-lg sm:text-xl">${c.title}</p>
-            <div class="pt-3 w-full">
-              <span class="block w-full px-5 py-2.5 bg-purple-800 text-white font-bold rounded-full transition shadow-md group-hover:bg-purple-700 text-xl">${c.price}</span>
-            </div>
-          </div>
-        </a>
-      `,
-        )
-        .join("");
-
-      // ── Testimonials Carousel ──
+      // ── Testimonials carousel ──
       const testimonials = [
         {
           name: "Sneha Parab",
@@ -611,9 +607,9 @@
       let autoPlay;
 
       // Build slides
-      testimonials.forEach((t, i) => {
+      testimonials.forEach((t) => {
         const slide = document.createElement("div");
-        slide.className = "carousel-slide";
+        slide.className = "w-full flex-[0_0_100%] px-4";
         slide.innerHTML = `
           <div class="bg-orange-50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 shadow-sm border border-orange-100">
             <span class="text-4xl sm:text-5xl text-purple-700 italic font-bold leading-none block mb-3">"</span>
@@ -629,21 +625,22 @@
               </div>
             </div>
           </div>`;
-
         const p = slide.querySelector(".testimonial-text");
         const btn = slide.querySelector(".read-more-btn");
         btn.addEventListener("click", () => {
           const clamped = p.classList.toggle("line-clamp-5");
           btn.textContent = clamped ? "Read more" : "Read less";
         });
-
         track.appendChild(slide);
       });
 
       // Build dots
       testimonials.forEach((_, i) => {
         const dot = document.createElement("button");
-        dot.className = "dot" + (i === 0 ? " active" : "");
+        dot.className = [
+          "w-2.5 h-2.5 rounded-full border-0 cursor-pointer transition-[background-color,transform] duration-200",
+          i === 0 ? "bg-violet-700 scale-[1.3]" : "bg-violet-300",
+        ].join(" ");
         dot.setAttribute("aria-label", `Go to slide ${i + 1}`);
         dot.addEventListener("click", () => goTo(i));
         dotsContainer.appendChild(dot);
@@ -651,7 +648,13 @@
 
       function updateDots() {
         Array.from(dotsContainer.children).forEach((d, i) => {
-          d.classList.toggle("active", i === current);
+          if (i === current) {
+            d.classList.add("bg-violet-700", "scale-[1.3]");
+            d.classList.remove("bg-violet-300");
+          } else {
+            d.classList.remove("bg-violet-700", "scale-[1.3]");
+            d.classList.add("bg-violet-300");
+          }
         });
       }
 
@@ -661,7 +664,6 @@
         const p = slide.querySelector(".testimonial-text");
         const btn = slide.querySelector(".read-more-btn");
         if (!p || !btn) return;
-        // Reset first
         p.classList.add("line-clamp-5");
         btn.textContent = "Read more";
         requestAnimationFrame(() => {
@@ -673,16 +675,12 @@
         if (isAnimating) return;
         current = (index + total) % total;
         isAnimating = true;
-
-        if (animate) {
-          track.style.transition = "transform 0.5s cubic-bezier(0.4,0,0.2,1)";
-        } else {
-          track.style.transition = "none";
-        }
+        track.style.transition = animate
+          ? "transform 0.5s cubic-bezier(0.4,0,0.2,1)"
+          : "none";
         track.style.transform = `translateX(-${current * 100}%)`;
         updateDots();
         checkReadMore(current);
-
         setTimeout(
           () => {
             isAnimating = false;
@@ -705,7 +703,7 @@
       carousel.addEventListener("mouseenter", stopAutoPlay);
       carousel.addEventListener("mouseleave", startAutoPlay);
 
-      // Touch swipe support
+      // Touch swipe
       let touchStartX = 0;
       carousel.addEventListener(
         "touchstart",
@@ -719,11 +717,8 @@
         if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
       });
 
-      // Init
       goTo(0, false);
       startAutoPlay();
-
-      // Check read-more after fonts load
       document.fonts.ready.then(() => checkReadMore(current));
     </script>
   </body>
