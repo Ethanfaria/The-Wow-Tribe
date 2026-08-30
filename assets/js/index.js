@@ -1,6 +1,164 @@
 initDrawer();
 initNavbarScroll("light-static");
-initScrollReveal({ threshold: 0.1 });
+const { revealObserver, REVEAL_BASE_CLASSES } = initScrollReveal({
+  threshold: 0.1,
+});
+
+// ── Upcoming events ──
+const EVENTS = [
+  {
+    date: "2026-09-22",
+    city: "Chandigarh",
+    audience: "Women Founders Only",
+    time: "12:00 PM – 5:00 PM",
+    badge: "₹2,499 · Limited Seats",
+    link: "https://tagmango.app/cc29a08cb6",
+    image: "assets/events/founders-table-chandigarh-women.webp",
+  },
+  {
+    date: "2026-09-23",
+    city: "Chandigarh",
+    audience: "All Founders",
+    time: "12:00 PM – 5:00 PM",
+    badge: "₹2,499 · Limited Seats",
+    link: "https://tagmango.app/fdbdf6bd56",
+    image: "assets/events/founders-table-chandigarh-all.webp",
+  },
+  {
+    date: "2026-09-26",
+    city: "Gurugram",
+    audience: "Women Founders Only",
+    time: "12:00 PM – 5:00 PM",
+    badge: "₹2,499 · Limited Seats",
+    link: "https://tagmango.app/5baea4dc20",
+    image: "assets/events/founders-table-gurugram-women.webp",
+  },
+  {
+    date: "2026-09-27",
+    city: "Gurugram",
+    audience: "All Founders",
+    time: "12:00 PM – 5:00 PM",
+    badge: "₹2,499 · Limited Seats",
+    link: "https://tagmango.app/4c24d4438f",
+    image: "assets/events/founders-table-gurugram-all.webp",
+  },
+];
+
+const EVENT_MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+function renderEventCards() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const upcoming = EVENTS.map((e) => ({ ...e, _date: new Date(e.date) }))
+    .filter((e) => e._date >= today)
+    .sort((a, b) => a._date - b._date)
+    .slice(0, 4);
+
+  const grid = document.getElementById("events-grid");
+  const empty = document.getElementById("events-empty");
+  if (!grid) return;
+
+  if (upcoming.length === 0) {
+    empty.classList.remove("hidden");
+    return;
+  }
+
+  upcoming.forEach((e) => {
+    const day = e._date.getDate();
+    const month = EVENT_MONTHS[e._date.getMonth()];
+
+    const card = document.createElement("div");
+    card.className =
+      "group bg-white rounded-2xl sm:rounded-3xl border border-orange-100 shadow-sm overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 reveal flex flex-col";
+    card.innerHTML = `
+      <div class="relative aspect-[3/4] sm:aspect-[4/5] w-full overflow-hidden bg-violet-100">
+        <img
+          src="${e.image}"
+          alt="The Founders' Table — Reset &amp; Root, ${e.city}"
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0"></div>
+
+        <div
+          class="absolute top-1.5 left-1.5 sm:top-3 sm:left-3 bg-white/95 backdrop-blur-sm rounded-lg sm:rounded-xl px-1.5 py-1 sm:px-3 sm:py-1.5 text-center shadow-sm leading-none"
+        >
+          <p class="text-xs sm:text-lg font-bold text-violet-900 leading-none">${day}</p>
+          <p class="text-[6px] sm:text-[9px] uppercase tracking-widest text-gray-500 mt-0.5">${month}</p>
+        </div>
+
+        <span
+          class="absolute top-1.5 right-1.5 sm:top-3 sm:right-3 text-[7px] sm:text-[10px] font-semibold uppercase tracking-wide bg-purple-800/90 text-white px-1.5 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-sm max-w-[65%] text-right leading-tight"
+        >
+          ${e.audience}
+        </span>
+
+        <div class="absolute bottom-0 left-0 right-0 p-2 sm:p-4">
+          <p
+            class="text-orange-200 text-[7px] sm:text-[10px] uppercase tracking-widest font-semibold mb-0.5"
+          >
+            The Founders' Table
+          </p>
+          <h3 class="text-white text-sm sm:text-2xl font-bold leading-tight">
+            ${e.city}
+          </h3>
+        </div>
+      </div>
+
+      <div class="p-2.5 sm:p-5 flex flex-col flex-1">
+        <p
+          class="flex items-center gap-1 sm:gap-1.5 text-gray-500 text-[10px] sm:text-sm mb-2 sm:mb-4"
+        >
+          <svg
+            class="w-3 h-3 sm:w-4 sm:h-4 text-purple-700 shrink-0"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          ${e.time}
+        </p>
+        <span
+          class="inline-block w-fit text-[9px] sm:text-sm font-semibold text-orange-700 bg-orange-100 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full mb-2.5 sm:mb-5"
+          >${e.badge}</span
+        >
+        <a
+          href="${e.link}"
+          class="mt-auto inline-block text-center px-2.5 py-1.5 sm:px-4 sm:py-2.5 bg-purple-800 text-white text-[11px] sm:text-sm rounded-full hover:bg-purple-700 transition font-medium"
+          >Reserve Seat</a
+        >
+      </div>
+    `;
+    grid.appendChild(card);
+    card.classList.add(...REVEAL_BASE_CLASSES);
+  });
+
+  grid
+    .querySelectorAll(".reveal")
+    .forEach((el) => revealObserver.observe(el));
+}
+
+renderEventCards();
 
 // ── Testimonials carousel ──
 const testimonials = [
