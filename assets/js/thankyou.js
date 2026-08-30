@@ -1,0 +1,2 @@
+initDrawer();
+initNavbarScroll("light-hover");

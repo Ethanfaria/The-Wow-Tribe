@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <title>Thank You – The Wow Tribe</title>
-    <link rel="stylesheet" href="assets/style.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -31,118 +31,47 @@
     />
     <link rel="icon" href="assets/favicon.ico" />
     <link rel="manifest" href="assets/site.webmanifest" />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        font-family: "Libre Baskerville", serif;
-        margin: 0;
-      }
 
-      /* NAV */
-      #navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 50;
-        transition:
-          background-color 0.3s,
-          box-shadow 0.3s;
-      }
-      #navbar.scrolled {
-        background: rgba(255, 247, 237, 0.96);
-        box-shadow: 0 2px 16px rgba(80, 0, 120, 0.08);
-        backdrop-filter: blur(8px);
-      }
-
-      #menu-toggle {
-        display: none;
-      }
-      #hamburger {
-        display: none;
-        cursor: pointer;
-        flex-direction: column;
-        gap: 5px;
-      }
-      #hamburger span {
-        display: block;
-        width: 24px;
-        height: 2px;
-        background: #581c87;
-        border-radius: 2px;
-        transition: all 0.3s;
-      }
-      #menu-toggle:checked ~ #nav-links {
-        display: flex;
-      }
-      #menu-toggle:checked ~ #hamburger span:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
-      }
-      #menu-toggle:checked ~ #hamburger span:nth-child(2) {
-        opacity: 0;
-      }
-      #menu-toggle:checked ~ #hamburger span:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
-      }
-
-      @media (max-width: 767px) {
-        #hamburger {
-          display: flex;
-        }
-        #nav-links {
-          display: none;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          flex-direction: column;
-          align-items: center;
-          gap: 0;
-          background: rgba(255, 247, 237, 0.98);
-          box-shadow: 0 8px 24px rgba(80, 0, 120, 0.12);
-          padding: 1rem 0 1.5rem;
-        }
-        #nav-links a {
-          padding: 0.75rem 2rem;
-          width: 100%;
-          text-align: center;
-        }
-        #nav-links .cta-btn {
-          margin: 0.5rem auto 0;
-        }
+    <!-- Shared stylesheet -->
+    <link rel="stylesheet" href="assets/style.css" />
+    <style type="text/tailwindcss">
+      @theme {
+        --font-serif: "Libre Baskerville", serif;
       }
     </style>
   </head>
-  <body class="bg-orange-50 flex flex-col min-h-screen">
-    <!-- NAVBAR -->
-    <nav id="navbar" class="w-full">
+  <body class="bg-orange-50 font-serif m-0 flex flex-col min-h-screen">
+    <!-- ══════════════ NAVBAR ══════════════ -->
+    <nav
+      id="navbar"
+      class="fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-300"
+    >
       <div
         class="w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20 md:h-24"
       >
         <a href="index.html" class="flex items-center gap-3 shrink-0">
           <img src="assets/logo.svg" class="h-24 w-auto" alt="The Wow Tribe" />
         </a>
-        <label id="hamburger" for="menu-toggle" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </label>
-        <input type="checkbox" id="menu-toggle" class="sr-only" />
+
+        <!-- Desktop links -->
         <div id="nav-links" class="hidden md:flex items-center gap-1 lg:gap-2">
           <a
             href="index.html"
+            data-nav-link
             class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium"
             >Home</a
           >
           <a
             href="about.html"
+            data-nav-link
             class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium"
             >About</a
           >
           <a
-            href="services.html"
+            href="community.html"
+            data-nav-link
             class="px-3 py-2 text-sm text-purple-900 hover:text-purple-600 transition font-medium"
-            >Services</a
+            >Community</a
           >
           <a
             href="contact.html"
@@ -150,10 +79,62 @@
             >Contact</a
           >
         </div>
+
+        <!-- Hamburger (mobile only) -->
+        <button
+          id="hamburger-btn"
+          aria-label="Open menu"
+          class="flex md:hidden bg-transparent border-0 cursor-pointer flex-col gap-[5px] items-center justify-center p-1.5"
+        >
+          <span class="block w-6 h-0.5 bg-purple-900 rounded-full transition-colors"></span>
+          <span class="block w-6 h-0.5 bg-purple-900 rounded-full transition-colors"></span>
+          <span class="block w-6 h-0.5 bg-purple-900 rounded-full transition-colors"></span>
+        </button>
       </div>
     </nav>
 
-    <!-- THANK YOU CONTENT -->
+    <!-- Drawer overlay -->
+    <div
+      id="drawer-overlay"
+      class="hidden fixed inset-0 bg-[rgba(30,0,60,0.55)] z-40 transition-opacity duration-300"
+    ></div>
+
+    <!-- Mobile drawer -->
+    <div
+      id="mobile-drawer"
+      aria-hidden="true"
+      class="fixed top-0 right-0 w-[72%] max-w-[280px] h-full bg-orange-50 z-50 translate-x-full transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] flex flex-col px-7 pt-6 pb-10 shadow-[-8px_0_32px_rgba(80,0,120,0.15)]"
+    >
+      <button
+        id="drawer-close"
+        aria-label="Close menu"
+        class="self-end bg-transparent border-0 cursor-pointer text-[22px] text-purple-900 px-1.5 py-1 leading-none mb-7"
+      >
+        ✕
+      </button>
+      <a
+        href="index.html"
+        class="block py-3.5 px-1 text-[15px] text-purple-950 font-medium no-underline border-b border-b-violet-100 font-serif"
+        >Home</a
+      >
+      <a
+        href="about.html"
+        class="block py-3.5 px-1 text-[15px] text-purple-950 font-medium no-underline border-b border-b-violet-100 font-serif"
+        >About</a
+      >
+      <a
+        href="community.html"
+        class="block py-3.5 px-1 text-[15px] text-purple-950 font-medium no-underline border-b border-b-violet-100 font-serif"
+        >Community</a
+      >
+      <a
+        href="contact.html"
+        class="mt-6 bg-purple-800 hover:bg-purple-700 !text-white rounded-full text-center py-3.5 border-b-0 font-semibold font-serif no-underline"
+        >Contact</a
+      >
+    </div>
+
+    <!-- ══════════════ THANK YOU CONTENT ══════════════ -->
     <main class="flex-grow flex items-center justify-center pt-32 pb-16 px-4">
       <div
         class="max-w-2xl w-full bg-white rounded-3xl p-10 sm:p-14 border border-orange-100 shadow-sm text-center space-y-8"
@@ -200,7 +181,7 @@
       </div>
     </main>
 
-    <!-- FOOTER -->
+    <!-- ══════════════ FOOTER ══════════════ -->
     <footer
       class="bg-violet-950 border-t border-purple-800 py-6 px-4 text-center"
     >
@@ -209,12 +190,8 @@
       </p>
     </footer>
 
-    <script>
-      // Navbar scroll
-      const navbar = document.getElementById("navbar");
-      window.addEventListener("scroll", () => {
-        navbar.classList.toggle("scrolled", window.scrollY > 30);
-      });
-    </script>
+    <!-- ══════════════ SCRIPTS ══════════════ -->
+    <script src="assets/site.js"></script>
+    <script src="assets/js/thank-you.js"></script>
   </body>
 </html>
