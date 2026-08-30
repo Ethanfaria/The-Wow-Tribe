@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_content .= "Message / Goals:\n" . $message . "\n";
 
     // Headers
-    $headers = "From: noreply@wow.massaratkang.com\r\n";
+    $headers = "From: noreply@wowbians.massaratkang.com\r\n";
     $headers .= "Reply-To: " . $email . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
 
